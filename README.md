@@ -1,4 +1,4 @@
-# CSE326 Portfolio | LuShadowX
+# Portfolio2
 
 My personal site: who I am, what I've built, the open-source fixes I've landed, and a live index of everything on my GitHub.
 
