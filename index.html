@@ -4,9 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Lukshya Supyal</title>
-    
+    <meta name="description" content="Lukshya Supyal, B.Tech CSE student at Lovely Professional University. I build machine learning models and Python tools, and fix bugs in the open-source libraries I use.">
+    <meta name="author" content="Lukshya Supyal">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="canonical" href="https://lushadowx.github.io/CSE326-Portfolio/">
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Lukshya Supyal">
+    <meta property="og:title" content="Lukshya Supyal | Ideas into reality">
+    <meta property="og:description" content="Machine learning, Python tools and open-source fixes. Projects, certificates and everything I've pushed to GitHub.">
+    <meta property="og:url" content="https://lushadowx.github.io/CSE326-Portfolio/">
+    <meta property="og:image" content="https://lushadowx.github.io/CSE326-Portfolio/assets/images/profile.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Lukshya Supyal",
+        "url": "https://lushadowx.github.io/CSE326-Portfolio/",
+        "image": "https://lushadowx.github.io/CSE326-Portfolio/assets/images/profile.jpeg",
+        "jobTitle": "AI / ML Engineer",
+        "affiliation": { "@type": "CollegeOrUniversity", "name": "Lovely Professional University" },
+        "sameAs": [
+            "https://github.com/LuShadowX",
+            "https://www.linkedin.com/in/lukshya-supyal2006/",
+            "https://leetcode.com/u/Lu_ShadowX/"
+        ]
+    }
+    </script>
+
     <link rel="preload" href="assets/images/clock-sprite.webp?v=2" as="image" fetchpriority="high">
-    <link rel="stylesheet" href="assets/css/main.css?v=20260929i">
+    <link rel="stylesheet" href="assets/css/main.css?v=20261024a">
+    <link rel="stylesheet" href="assets/css/repo-index.css?v=20261024a">
+    <link rel="preconnect" href="https://api.github.com" crossorigin>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +60,8 @@
     </style>
 </head>
 <body data-theme="dark" class="at-intro">
+    <a class="skip-link" href="#home">Skip to content</a>
+    <noscript><p class="noscript-note">The animations and the live repo index need JavaScript. Everything else is still here, it just won't move.</p></noscript>
     <span class="skills-transfer-clone" aria-hidden="true">Skills</span>
 
     <header class="header js-header">
@@ -49,6 +83,7 @@
                     <li><a href="#certificates" class="t-link">Certificates</a></li>
                     <li><a href="#skills-orbit" class="t-link">Skills</a></li>
                     <li><a href="#projects" class="t-link">Projects</a></li>
+                    <li><a href="#repos" class="t-link">Repos</a></li>
                     <li><a href="#contact" class="t-link">Contact</a></li>
                 </ul>
                 <div class="top-socials">
@@ -227,6 +262,90 @@
     <script type="application/json" id="plc-data">{"projects": [{"name": "YouTube Video Downloader", "tags": ["Media", "Python"], "image": "assets/images/covers/yt.webp", "blocks": [["En", "Built a YouTube Video Downloader that allows users to download videos by providing a YouTube link and selecting the desired video quality. Implemented functionality to fetch available resolutions, handle audio/video streams, and download content efficiently to the local system."]], "context": "Media utility", "year": "2024", "credits": [["Stack", "Python, Flask, YouTube API, Pytube"], ["Design &amp; Dev.", "Lukshya Supyal"], ["Role", "Solo build, idea to deploy"]], "button": {"label": "View repository", "href": "https://github.com/LuShadowX/YT_Video_Downloader"}, "links": []}, {"name": "AI Process Analyzer", "tags": ["OS", "Machine Learning"], "image": "assets/images/covers/analyzer.webp", "blocks": [["En", "An AI-driven system optimization tool engineered to detect and mitigate operating system anomalies. Leveraging a Random Forest algorithm, it analyzes process behavior in real-time to identify and assist in removing resource-draining tasks."]], "context": "System intelligence", "year": "2024", "credits": [["Stack", "Python, Random Forest, Scikit-learn, System Monitoring"], ["Design &amp; Dev.", "Lukshya Supyal"], ["Role", "Solo build, idea to deploy"]], "button": {"label": "View repository", "href": "https://github.com/LuShadowX/AI-Powered-Process-Performance-Analyzer-For-OS"}, "links": []}, {"name": "BlueLink", "tags": ["News", "WEB"], "image": "assets/images/covers/bluelink.webp", "blocks": [["En", "An editorial news reader for tech, AI, sport, games and lifestyle. A Node pipeline pulls RSS and YouTube feeds server-side, de-duplicates them and publishes static JSON, and GitHub Actions refreshes every section on a schedule."]], "context": "Editorial news reader", "year": "2025", "credits": [["Stack", "TypeScript, Vite, Node.js, GitHub Actions"], ["Design &amp; Dev.", "Lukshya Supyal"], ["Role", "Solo build, idea to deploy"]], "button": {"label": "Explore website", "href": "https://lushadowx.github.io/bluelink/"}, "links": [{"label": "VIEW THE GITHUB REPOSITORY", "href": "https://github.com/LuShadowX/bluelink"}]}, {"name": "AI Support Agent", "tags": ["Agent", "RAG"], "image": "assets/images/covers/agent.webp", "blocks": [["En", "A customer-support agent that answers only from your business documents using RAG and takes real actions: it looks up orders, checks live stock and hands off to a human. Runs as a one-line website widget and as a Telegram bot."]], "context": "Retrieval-grounded agent", "year": "2025", "credits": [["Stack", "Python, FastAPI, ChromaDB, RAG"], ["Design &amp; Dev.", "Lukshya Supyal"], ["Role", "Solo build, idea to deploy"]], "button": {"label": "View repository", "href": "https://github.com/LuShadowX/ai-support-agent"}, "links": []}, {"name": "Lua: Anime Chatbot", "tags": ["Chat", "LLM"], "image": "assets/images/covers/lua.webp", "blocks": [["En", "An LLM anime chatbot grounded in live AniList, Fandom and Wikipedia data, so it says so instead of making things up. Remembers each conversation and fails over between LLM providers automatically."]], "context": "Grounded chatbot", "year": "2025", "credits": [["Stack", "Python, LLM, AniList API, OpenRouter"], ["Design &amp; Dev.", "Lukshya Supyal"], ["Role", "Solo build, idea to deploy"]], "button": {"label": "Explore website", "href": "https://lua-anime-chatbot.onrender.com"}, "links": [{"label": "VIEW THE GITHUB REPOSITORY", "href": "https://github.com/LuShadowX/lua-anime-chatbot"}]}, {"name": "Nova: Novel Bot", "tags": ["Books", "LLM"], "image": "assets/images/covers/nova.webp", "blocks": [["En", "A friendly novels-expert chatbot grounded in Open Library and Wikipedia. Answers questions about any book, shows a cover card for the novel being discussed and recommends what to read next."]], "context": "Reading companion", "year": "2026", "credits": [["Stack", "Python, JavaScript, LLM, Open Library API"], ["Design &amp; Dev.", "Lukshya Supyal"], ["Role", "Solo build, idea to deploy"]], "button": {"label": "Explore website", "href": "https://nova-novel-bot.onrender.com"}, "links": [{"label": "VIEW THE GITHUB REPOSITORY", "href": "https://github.com/LuShadowX/nova-novel-bot"}]}], "oss": [{"name": "scikit-learn/scikit-learn", "tags": ["Python", "★67.4K"], "image": "assets/images/covers/sklearn.webp", "blocks": [["Repo", "scikit-learn: machine learning in Python"], ["PR", "<a href=\"https://github.com/scikit-learn/scikit-learn/pull/34556\" target=\"_blank\" rel=\"noopener noreferrer\">#34556<\/a> DOC refactor examples/ensemble/plot_forest_iris.py to use DecisionBoundaryDisplay"]], "context": "GitHub / scikit-learn", "year": "2026", "credits": [["Language", "Python"], ["Stars", "67.4k"], ["Merged", "1 merged PR"], ["Contributor", "Lukshya Supyal"]], "button": {"label": "View pull request", "href": "https://github.com/scikit-learn/scikit-learn/pull/34556"}, "links": [{"label": "VIEW THE REPOSITORY", "href": "https://github.com/scikit-learn/scikit-learn"}]}, {"name": "scrapy/scrapy", "tags": ["Python", "★64.5K"], "image": "assets/images/covers/scrapy.webp", "blocks": [["Repo", "Scrapy, a fast high-level web crawling &amp; scraping framework for Python."], ["PR", "<a href=\"https://github.com/scrapy/scrapy/pull/7783\" target=\"_blank\" rel=\"noopener noreferrer\">#7783<\/a> Fix CaseInsensitiveDict.copy() sharing state with the original"]], "context": "GitHub / scrapy", "year": "2026", "credits": [["Language", "Python"], ["Stars", "64.5k"], ["Merged", "1 merged PR"], ["Contributor", "Lukshya Supyal"]], "button": {"label": "View pull request", "href": "https://github.com/scrapy/scrapy/pull/7783"}, "links": [{"label": "VIEW THE REPOSITORY", "href": "https://github.com/scrapy/scrapy"}]}, {"name": "mozilla/pdf.js", "tags": ["Javascript", "★53.9K"], "image": "assets/images/covers/pdfjs.webp", "blocks": [["Repo", "PDF Reader in JavaScript"], ["PR", "<a href=\"https://github.com/mozilla/pdf.js/pull/21622\" target=\"_blank\" rel=\"noopener noreferrer\">#21622<\/a> Document the preserve and dependencyLists params for recordOperation"]], "context": "GitHub / mozilla", "year": "2026", "credits": [["Language", "JavaScript"], ["Stars", "53.9k"], ["Merged", "1 merged PR"], ["Contributor", "Lukshya Supyal"]], "button": {"label": "View pull request", "href": "https://github.com/mozilla/pdf.js/pull/21622"}, "links": [{"label": "VIEW THE REPOSITORY", "href": "https://github.com/mozilla/pdf.js"}]}, {"name": "roboflow/supervision", "tags": ["Python", "★51K"], "image": "assets/images/covers/supervision.webp", "blocks": [["Repo", "We write your reusable computer vision tools."], ["PR", "<a href=\"https://github.com/roboflow/supervision/pull/2463\" target=\"_blank\" rel=\"noopener noreferrer\">#2463<\/a> fix(dataset): keep <code>class_id<\/code> integral for VOC background images"]], "context": "GitHub / roboflow", "year": "2026", "credits": [["Language", "Python"], ["Stars", "51k"], ["Merged", "1 merged PR"], ["Contributor", "Lukshya Supyal"]], "button": {"label": "View pull request", "href": "https://github.com/roboflow/supervision/pull/2463"}, "links": [{"label": "VIEW THE REPOSITORY", "href": "https://github.com/roboflow/supervision"}]}, {"name": "psf/black", "tags": ["Python", "★41.9K"], "image": "assets/images/covers/black.webp", "blocks": [["Repo", "The uncompromising Python code formatter"], ["PR", "<a href=\"https://github.com/psf/black/pull/5271\" target=\"_blank\" rel=\"noopener noreferrer\">#5271<\/a> Don&#x27;t hug brackets when it would merge two <code>type: ignore<\/code> comments<br><a href=\"https://github.com/psf/black/pull/5272\" target=\"_blank\" rel=\"noopener noreferrer\">#5272<\/a> Keep the required trailing comma of a one-element subscript under --skip-magic-trailing-comma"]], "context": "GitHub / psf", "year": "2026", "credits": [["Language", "Python"], ["Stars", "41.9k"], ["Merged", "2 merged PRs"], ["Contributor", "Lukshya Supyal"]], "button": {"label": "View pull request", "href": "https://github.com/psf/black/pull/5271"}, "links": [{"label": "VIEW PR #5272", "href": "https://github.com/psf/black/pull/5272"}, {"label": "VIEW THE REPOSITORY", "href": "https://github.com/psf/black"}]}, {"name": "huggingface/diffusers", "tags": ["Python", "★34.6K"], "image": "assets/images/covers/diffusers.webp", "blocks": [["Repo", "Diffusers: State-of-the-art diffusion models for image, video, and audio generation in PyTorch."], ["PR", "<a href=\"https://github.com/huggingface/diffusers/pull/14416\" target=\"_blank\" rel=\"noopener noreferrer\">#14416<\/a> Fix callback tensor inputs that are never bound in the denoising loop"]], "context": "GitHub / huggingface", "year": "2026", "credits": [["Language", "Python"], ["Stars", "34.6k"], ["Merged", "1 merged PR"], ["Contributor", "Lukshya Supyal"]], "button": {"label": "View pull request", "href": "https://github.com/huggingface/diffusers/pull/14416"}, "links": [{"label": "VIEW THE REPOSITORY", "href": "https://github.com/huggingface/diffusers"}]}], "notes": [{"name": "The GPU Was Never the Bottleneck", "tags": ["Systems", "9 min read"], "image": "assets/images/covers/gpu.webp", "blocks": [["Tl;dr", "I spent two weeks convinced I needed a better card. The profiler had a different opinion, and it was written in the space between steps."], ["Opens", "What changed is that I finally watched the GPU instead of assuming things about it. I ran nvidia-smi in a loop in a second terminal and left it there for a full epoch while I ate lunch. When I came back I had a wall of numbers, and the numbers were not the flat 95–99% I expected from a card that was…"]], "context": "Blue Link", "year": "2026", "credits": [["Topic", "Systems"], ["Reading time", "9 min read"], ["Published", "28 Jul 2026"], ["Words", "Lukshya Supyal"]], "button": {"label": "Read the note", "href": "https://lushadowx.github.io/posts/gpu-was-never-the-bottleneck.html"}, "links": [{"label": "VISIT BLUE LINK", "href": "https://lushadowx.github.io/"}]}, {"name": "Notes From Three Weeks Inside a Dataloader", "tags": ["Machine Learning", "11 min read"], "image": "assets/images/covers/dataloader.webp", "blocks": [["Tl;dr", "Everything I learned by refusing to move on from a single function that was, on paper, already working."], ["Opens", "The function at the centre of this is forty lines long. It is a __getitem__. It reads an index, pulls a record, applies a random crop and a random horizontal flip, normalises, returns a tensor and a label. I wrote it in March, it ran without errors, and I did not look at it again until June because…"]], "context": "Blue Link", "year": "2026", "credits": [["Topic", "Machine Learning"], ["Reading time", "11 min read"], ["Published", "09 Jul 2026"], ["Words", "Lukshya Supyal"]], "button": {"label": "Read the note", "href": "https://lushadowx.github.io/posts/three-weeks-inside-a-dataloader.html"}, "links": [{"label": "VISIT BLUE LINK", "href": "https://lushadowx.github.io/"}]}, {"name": "Attention Is Cheaper Than You Think (Until It Isn’t)", "tags": ["Machine Learning", "12 min read"], "image": "assets/images/covers/attention.webp", "blocks": [["Tl;dr", "The quadratic term gets all the blame. On a 4GB card, the real cost was somewhere much more boring."], ["Opens", "Then in May I actually instrumented the thing, mostly because I wanted a chart for a class presentation. The model is small and unglamorous: d_model 384, six layers, six heads, an MLP with the usual 4× expansion, mixed precision, batch of 16, trained on a corpus of scraped course notes. At sequence…"]], "context": "Blue Link", "year": "2026", "credits": [["Topic", "Machine Learning"], ["Reading time", "12 min read"], ["Published", "21 Jun 2026"], ["Words", "Lukshya Supyal"]], "button": {"label": "Read the note", "href": "https://lushadowx.github.io/posts/attention-is-cheaper-than-you-think.html"}, "links": [{"label": "VISIT BLUE LINK", "href": "https://lushadowx.github.io/"}]}, {"name": "What a Kaggle Bronze Actually Taught Me", "tags": ["Notebook", "7 min read"], "image": "assets/images/covers/kaggle.webp", "blocks": [["Tl;dr", "It was not a good model. It was the first time I understood why my good models had been lucky."], ["Opens", "The competition was a physiological signal classification task — windows of sensor data from recording sessions, several sessions per subject, one label per window. Roughly 340,000 rows in train. Metric was AUC. I will not name it because I do not want this to read as a solution write-up; it is not…"]], "context": "Blue Link", "year": "2026", "credits": [["Topic", "Notebook"], ["Reading time", "7 min read"], ["Published", "02 Jun 2026"], ["Words", "Lukshya Supyal"]], "button": {"label": "Read the note", "href": "https://lushadowx.github.io/posts/what-a-kaggle-bronze-taught-me.html"}, "links": [{"label": "VISIT BLUE LINK", "href": "https://lushadowx.github.io/"}]}, {"name": "The Semester I Stopped Using an IDE", "tags": ["Notebook", "8 min read"], "image": "assets/images/covers/ide.webp", "blocks": [["Tl;dr", "Four months in a text editor and a terminal. What I lost, what I got back, and what I quietly reinstalled."], ["Opens", "This is not an argument that IDEs are bad, and it is definitely not an argument that you should do this. I had a specific constraint and I made a specific trade. What I want to write down is what changed over four months, including the parts where I got slower and stayed slower, because those get qu…"]], "context": "Blue Link", "year": "2026", "credits": [["Topic", "Notebook"], ["Reading time", "8 min read"], ["Published", "15 May 2026"], ["Words", "Lukshya Supyal"]], "button": {"label": "Read the note", "href": "https://lushadowx.github.io/posts/the-semester-i-stopped-using-an-ide.html"}, "links": [{"label": "VISIT BLUE LINK", "href": "https://lushadowx.github.io/"}]}, {"name": "On Reading Papers You Don’t Understand Yet", "tags": ["Notebook", "6 min read"], "image": "assets/images/covers/papers.webp", "blocks": [["Tl;dr", "You are allowed to not understand it yet. A method for reading things that are currently above you."], ["Opens", "That was February 2025. I have read maybe sixty papers since, and I want to be honest about the outcome: I still do not fully understand most of them. What changed is that I stopped treating “I don’t understand this” as a verdict about me and started treating it as a position — where I am standing,…"]], "context": "Blue Link", "year": "2026", "credits": [["Topic", "Notebook"], ["Reading time", "6 min read"], ["Published", "27 Apr 2026"], ["Words", "Lukshya Supyal"]], "button": {"label": "Read the note", "href": "https://lushadowx.github.io/posts/reading-papers-you-dont-understand.html"}, "links": [{"label": "VISIT BLUE LINK", "href": "https://lushadowx.github.io/"}]}]}</script>
     <script type="application/json" id="project-data">{"projects": [{"id": "01", "name": "YouTube Video Downloader", "type": "Media utility", "stamp": "MEDIA / PYTHON", "image": "assets/images/covers/yt.webp", "sections": [["THE IDEA", "Built a YouTube Video Downloader that allows users to download videos by providing a YouTube link and selecting the desired video quality. Implemented functionality to fetch available resolutions, handle audio/video streams, and download content efficiently to the local system."]], "tools": ["Python", "Flask", "YouTube API", "Pytube"], "links": [{"label": "VIEW THE GITHUB REPOSITORY", "href": "https://github.com/LuShadowX/YT_Video_Downloader"}]}, {"id": "02", "name": "AI Process Analyzer", "type": "System intelligence", "stamp": "OS / MACHINE LEARNING", "image": "assets/images/covers/analyzer.webp", "sections": [["THE IDEA", "An AI-driven system optimization tool engineered to detect and mitigate operating system anomalies. Leveraging a Random Forest algorithm, it analyzes process behavior in real-time to identify and assist in removing resource-draining tasks."]], "tools": ["Python", "Random Forest", "Scikit-learn", "System Monitoring"], "links": [{"label": "VIEW THE GITHUB REPOSITORY", "href": "https://github.com/LuShadowX/AI-Powered-Process-Performance-Analyzer-For-OS"}]}, {"id": "03", "name": "BlueLink", "type": "Editorial news reader", "stamp": "NEWS / WEB", "image": "assets/images/covers/bluelink.webp", "sections": [["THE IDEA", "An editorial news reader for tech, AI, sport, games and lifestyle. A Node pipeline pulls RSS and YouTube feeds server-side, de-duplicates them and publishes static JSON, and GitHub Actions refreshes every section on a schedule."]], "tools": ["TypeScript", "Vite", "Node.js", "GitHub Actions"], "links": [{"label": "VISIT THE LIVE PROJECT", "href": "https://lushadowx.github.io/bluelink/"}, {"label": "VIEW THE GITHUB REPOSITORY", "href": "https://github.com/LuShadowX/bluelink"}]}, {"id": "04", "name": "AI Support Agent", "type": "Retrieval-grounded agent", "stamp": "AGENT / RAG", "image": "assets/images/covers/agent.webp", "sections": [["THE IDEA", "A customer-support agent that answers only from your business documents using RAG and takes real actions: it looks up orders, checks live stock and hands off to a human. Runs as a one-line website widget and as a Telegram bot."]], "tools": ["Python", "FastAPI", "ChromaDB", "RAG"], "links": [{"label": "VIEW THE GITHUB REPOSITORY", "href": "https://github.com/LuShadowX/ai-support-agent"}]}, {"id": "05", "name": "Lua: Anime Chatbot", "type": "Grounded chatbot", "stamp": "CHAT / LLM", "image": "assets/images/covers/lua.webp", "sections": [["THE IDEA", "An LLM anime chatbot grounded in live AniList, Fandom and Wikipedia data, so it says so instead of making things up. Remembers each conversation and fails over between LLM providers automatically."]], "tools": ["Python", "LLM", "AniList API", "OpenRouter"], "links": [{"label": "VISIT THE LIVE PROJECT", "href": "https://lua-anime-chatbot.onrender.com"}, {"label": "VIEW THE GITHUB REPOSITORY", "href": "https://github.com/LuShadowX/lua-anime-chatbot"}]}, {"id": "06", "name": "Nova: Novel Bot", "type": "Reading companion", "stamp": "BOOKS / LLM", "image": "assets/images/covers/nova.webp", "sections": [["THE IDEA", "A friendly novels-expert chatbot grounded in Open Library and Wikipedia. Answers questions about any book, shows a cover card for the novel being discussed and recommends what to read next."]], "tools": ["Python", "JavaScript", "LLM", "Open Library API"], "links": [{"label": "VISIT THE LIVE PROJECT", "href": "https://nova-novel-bot.onrender.com"}, {"label": "VIEW THE GITHUB REPOSITORY", "href": "https://github.com/LuShadowX/nova-novel-bot"}]}], "oss": [{"id": "01", "name": "scikit-learn/scikit-learn", "type": "scikit-learn: machine learning in Python", "stamp": "★ 67.4K / PYTHON", "image": "assets/images/covers/sklearn.webp", "sections": [["THE PROJECT", "scikit-learn: machine learning in Python"], ["WHAT I SHIPPED", "<a href=\"https://github.com/scikit-learn/scikit-learn/pull/34556\" target=\"_blank\" rel=\"noopener noreferrer\">#34556</a> DOC refactor examples/ensemble/plot_forest_iris.py to use DecisionBoundaryDisplay"]], "tools": ["Python", "★ 67.4k", "1 merged PR"], "links": [{"label": "VIEW PR #34556", "href": "https://github.com/scikit-learn/scikit-learn/pull/34556"}, {"label": "VIEW THE REPOSITORY", "href": "https://github.com/scikit-learn/scikit-learn"}]}, {"id": "02", "name": "scrapy/scrapy", "type": "Scrapy, a fast high-level web crawling & scraping framework for Python.", "stamp": "★ 64.5K / PYTHON", "image": "assets/images/covers/scrapy.webp", "sections": [["THE PROJECT", "Scrapy, a fast high-level web crawling &amp; scraping framework for Python."], ["WHAT I SHIPPED", "<a href=\"https://github.com/scrapy/scrapy/pull/7783\" target=\"_blank\" rel=\"noopener noreferrer\">#7783</a> Fix CaseInsensitiveDict.copy() sharing state with the original"]], "tools": ["Python", "★ 64.5k", "1 merged PR"], "links": [{"label": "VIEW PR #7783", "href": "https://github.com/scrapy/scrapy/pull/7783"}, {"label": "VIEW THE REPOSITORY", "href": "https://github.com/scrapy/scrapy"}]}, {"id": "03", "name": "mozilla/pdf.js", "type": "PDF Reader in JavaScript", "stamp": "★ 53.9K / JAVASCRIPT", "image": "assets/images/covers/pdfjs.webp", "sections": [["THE PROJECT", "PDF Reader in JavaScript"], ["WHAT I SHIPPED", "<a href=\"https://github.com/mozilla/pdf.js/pull/21622\" target=\"_blank\" rel=\"noopener noreferrer\">#21622</a> Document the preserve and dependencyLists params for recordOperation"]], "tools": ["JavaScript", "★ 53.9k", "1 merged PR"], "links": [{"label": "VIEW PR #21622", "href": "https://github.com/mozilla/pdf.js/pull/21622"}, {"label": "VIEW THE REPOSITORY", "href": "https://github.com/mozilla/pdf.js"}]}, {"id": "04", "name": "roboflow/supervision", "type": "We write your reusable computer vision tools.", "stamp": "★ 51K / PYTHON", "image": "assets/images/covers/supervision.webp", "sections": [["THE PROJECT", "We write your reusable computer vision tools."], ["WHAT I SHIPPED", "<a href=\"https://github.com/roboflow/supervision/pull/2463\" target=\"_blank\" rel=\"noopener noreferrer\">#2463</a> fix(dataset): keep `class_id` integral for VOC background images"]], "tools": ["Python", "★ 51k", "1 merged PR"], "links": [{"label": "VIEW PR #2463", "href": "https://github.com/roboflow/supervision/pull/2463"}, {"label": "VIEW THE REPOSITORY", "href": "https://github.com/roboflow/supervision"}]}, {"id": "05", "name": "psf/black", "type": "The uncompromising Python code formatter", "stamp": "★ 41.9K / PYTHON", "image": "assets/images/covers/black.webp", "sections": [["THE PROJECT", "The uncompromising Python code formatter"], ["WHAT I SHIPPED", "<a href=\"https://github.com/psf/black/pull/5271\" target=\"_blank\" rel=\"noopener noreferrer\">#5271</a> Don&#x27;t hug brackets when it would merge two `type: ignore` comments<br><a href=\"https://github.com/psf/black/pull/5272\" target=\"_blank\" rel=\"noopener noreferrer\">#5272</a> Keep the required trailing comma of a one-element subscript under --skip-magic-trailing-comma"]], "tools": ["Python", "★ 41.9k", "2 merged PRs"], "links": [{"label": "VIEW PR #5271", "href": "https://github.com/psf/black/pull/5271"}, {"label": "VIEW PR #5272", "href": "https://github.com/psf/black/pull/5272"}, {"label": "VIEW THE REPOSITORY", "href": "https://github.com/psf/black"}]}, {"id": "06", "name": "huggingface/diffusers", "type": "Diffusers: State-of-the-art diffusion models for image, video, and audio generation in PyTorch.", "stamp": "★ 34.6K / PYTHON", "image": "assets/images/covers/diffusers.webp", "sections": [["THE PROJECT", "Diffusers: State-of-the-art diffusion models for image, video, and audio generation in PyTorch."], ["WHAT I SHIPPED", "<a href=\"https://github.com/huggingface/diffusers/pull/14416\" target=\"_blank\" rel=\"noopener noreferrer\">#14416</a> Fix callback tensor inputs that are never bound in the denoising loop"]], "tools": ["Python", "★ 34.6k", "1 merged PR"], "links": [{"label": "VIEW PR #14416", "href": "https://github.com/huggingface/diffusers/pull/14416"}, {"label": "VIEW THE REPOSITORY", "href": "https://github.com/huggingface/diffusers"}]}], "notes": [{"id": "01", "name": "The GPU Was Never the Bottleneck", "type": "Systems", "stamp": "SYSTEMS / 28 JUL 2026", "image": "assets/images/covers/gpu.webp", "sections": [["THE NOTE", "I spent two weeks convinced I needed a better card. The profiler had a different opinion, and it was written in the space between steps."], ["HOW IT OPENS", "What changed is that I finally watched the GPU instead of assuming things about it. I ran nvidia-smi in a loop in a second terminal and left it there for a full epoch while I ate lunch. When I came back I had a wall of numbers, and the numbers were not the flat 95–99% I expected from a card that was…"]], "tools": ["Systems", "9 min read", "28 Jul 2026"], "links": [{"label": "READ THE FULL NOTE", "href": "https://lushadowx.github.io/posts/gpu-was-never-the-bottleneck.html"}, {"label": "VISIT BLUE LINK", "href": "https://lushadowx.github.io/"}]}, {"id": "02", "name": "Notes From Three Weeks Inside a Dataloader", "type": "Machine Learning", "stamp": "MACHINE LEARNING / 09 JUL 2026", "image": "assets/images/covers/dataloader.webp", "sections": [["THE NOTE", "Everything I learned by refusing to move on from a single function that was, on paper, already working."], ["HOW IT OPENS", "The function at the centre of this is forty lines long. It is a __getitem__. It reads an index, pulls a record, applies a random crop and a random horizontal flip, normalises, returns a tensor and a label. I wrote it in March, it ran without errors, and I did not look at it again until June because…"]], "tools": ["Machine Learning", "11 min read", "09 Jul 2026"], "links": [{"label": "READ THE FULL NOTE", "href": "https://lushadowx.github.io/posts/three-weeks-inside-a-dataloader.html"}, {"label": "VISIT BLUE LINK", "href": "https://lushadowx.github.io/"}]}, {"id": "03", "name": "Attention Is Cheaper Than You Think (Until It Isn’t)", "type": "Machine Learning", "stamp": "MACHINE LEARNING / 21 JUN 2026", "image": "assets/images/covers/attention.webp", "sections": [["THE NOTE", "The quadratic term gets all the blame. On a 4GB card, the real cost was somewhere much more boring."], ["HOW IT OPENS", "Then in May I actually instrumented the thing, mostly because I wanted a chart for a class presentation. The model is small and unglamorous: d_model 384, six layers, six heads, an MLP with the usual 4× expansion, mixed precision, batch of 16, trained on a corpus of scraped course notes. At sequence…"]], "tools": ["Machine Learning", "12 min read", "21 Jun 2026"], "links": [{"label": "READ THE FULL NOTE", "href": "https://lushadowx.github.io/posts/attention-is-cheaper-than-you-think.html"}, {"label": "VISIT BLUE LINK", "href": "https://lushadowx.github.io/"}]}, {"id": "04", "name": "What a Kaggle Bronze Actually Taught Me", "type": "Notebook", "stamp": "NOTEBOOK / 02 JUN 2026", "image": "assets/images/covers/kaggle.webp", "sections": [["THE NOTE", "It was not a good model. It was the first time I understood why my good models had been lucky."], ["HOW IT OPENS", "The competition was a physiological signal classification task — windows of sensor data from recording sessions, several sessions per subject, one label per window. Roughly 340,000 rows in train. Metric was AUC. I will not name it because I do not want this to read as a solution write-up; it is not…"]], "tools": ["Notebook", "7 min read", "02 Jun 2026"], "links": [{"label": "READ THE FULL NOTE", "href": "https://lushadowx.github.io/posts/what-a-kaggle-bronze-taught-me.html"}, {"label": "VISIT BLUE LINK", "href": "https://lushadowx.github.io/"}]}, {"id": "05", "name": "The Semester I Stopped Using an IDE", "type": "Notebook", "stamp": "NOTEBOOK / 15 MAY 2026", "image": "assets/images/covers/ide.webp", "sections": [["THE NOTE", "Four months in a text editor and a terminal. What I lost, what I got back, and what I quietly reinstalled."], ["HOW IT OPENS", "This is not an argument that IDEs are bad, and it is definitely not an argument that you should do this. I had a specific constraint and I made a specific trade. What I want to write down is what changed over four months, including the parts where I got slower and stayed slower, because those get qu…"]], "tools": ["Notebook", "8 min read", "15 May 2026"], "links": [{"label": "READ THE FULL NOTE", "href": "https://lushadowx.github.io/posts/the-semester-i-stopped-using-an-ide.html"}, {"label": "VISIT BLUE LINK", "href": "https://lushadowx.github.io/"}]}, {"id": "06", "name": "On Reading Papers You Don’t Understand Yet", "type": "Notebook", "stamp": "NOTEBOOK / 27 APR 2026", "image": "assets/images/covers/papers.webp", "sections": [["THE NOTE", "You are allowed to not understand it yet. A method for reading things that are currently above you."], ["HOW IT OPENS", "That was February 2025. I have read maybe sixty papers since, and I want to be honest about the outcome: I still do not fully understand most of them. What changed is that I stopped treating “I don’t understand this” as a verdict about me and started treating it as a position — where I am standing,…"]], "tools": ["Notebook", "6 min read", "27 Apr 2026"], "links": [{"label": "READ THE FULL NOTE", "href": "https://lushadowx.github.io/posts/reading-papers-you-dont-understand.html"}, {"label": "VISIT BLUE LINK", "href": "https://lushadowx.github.io/"}]}]}</script>
 
+    <section id="repos" class="repo-index" aria-labelledby="repo-title">
+        <div class="repo-inner">
+            <div class="section-label" aria-hidden="true"><span>05</span><span class="section-label-line"></span><span>Repo index</span></div>
+
+            <header class="repo-head">
+                <p>Everything I've pushed to GitHub, straight from the API. Pin the ones worth a look, or drag them onto the shelf.</p>
+                <h2 id="repo-title">The whole <em>shelf.</em></h2>
+            </header>
+
+            <div class="repo-overview">
+                <p class="repo-stats" id="repo-stats"></p>
+                <div class="repo-langbar" id="repo-langbar"></div>
+            </div>
+
+            <form class="repo-controls" role="search" aria-label="Filter repositories">
+                <label class="repo-search">
+                    <span>Search</span>
+                    <input type="search" id="repo-q" name="q" placeholder="lang:python stars:>0 agent" autocomplete="off" spellcheck="false" aria-describedby="repo-q-hint">
+                    <kbd aria-hidden="true">/</kbd>
+                </label>
+                <label>
+                    <span>Language</span>
+                    <select id="repo-lang" name="language"><option value="all">All languages</option></select>
+                </label>
+                <label>
+                    <span>Sort by</span>
+                    <select id="repo-sort" name="sort">
+                        <option value="pushed">Recently pushed</option>
+                        <option value="stars">Most stars</option>
+                        <option value="name">Name</option>
+                        <option value="created">Newest</option>
+                    </select>
+                </label>
+                <label class="repo-check"><input type="checkbox" id="repo-forks" name="forks"><span>Show forks</span></label>
+                <fieldset class="repo-view">
+                    <legend>View</legend>
+                    <label><input type="radio" name="repo-view" value="cards" checked><span>Cards</span></label>
+                    <label><input type="radio" name="repo-view" value="table"><span>Table</span></label>
+                </fieldset>
+                <p class="repo-hint" id="repo-q-hint">Filters: <code>lang:</code> <code>topic:</code> <code>stars:&gt;2</code> <code>stars:1..5</code> <code>is:fork</code>. Press <kbd>/</kbd> to search, <kbd>Esc</kbd> to clear.</p>
+            </form>
+
+            <div class="repo-shelf is-empty" id="repo-shelf">
+                <p class="repo-shelf__label"><span>Shelf</span> <span class="repo-shelf__count">0/6</span></p>
+                <ol class="repo-pins" id="repo-pins" aria-label="Pinned repositories"></ol>
+                <p class="repo-shelf__empty">Drop a repo here, or hit its pin. Pins stay saved in this browser.</p>
+            </div>
+
+            <div class="repo-status" id="repo-status" data-state="idle">
+                <p role="status"><span class="repo-status__text"></span> <button type="button" class="repo-reset" hidden>Clear filters</button><button type="button" class="repo-retry">try again</button></p>
+                <p class="repo-source"></p>
+            </div>
+            <p class="sr-only" id="repo-announcer" aria-live="assertive"></p>
+
+            <div class="repo-results">
+                <ul class="repo-cards" id="repo-cards" aria-label="Repositories"></ul>
+                <table class="repo-table" id="repo-table" hidden>
+                    <caption class="sr-only">My GitHub repositories. Column headers sort the table.</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col" data-sort="name" aria-sort="none"><button type="button">Name</button></th>
+                            <th scope="col" data-sort="language" aria-sort="none"><button type="button">Language</button></th>
+                            <th scope="col" data-sort="stars" aria-sort="none"><button type="button">Stars</button></th>
+                            <th scope="col" data-sort="pushed" aria-sort="none"><button type="button">Updated</button></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <template id="repo-card-tpl">
+                <li class="repo-card" draggable="true">
+                    <article>
+                        <p class="repo-card__meta"><span class="repo-card__lang"></span><span class="repo-card__stars"></span></p>
+                        <h3 class="repo-card__name"><a target="_blank" rel="noopener"></a></h3>
+                        <p class="repo-card__desc"></p>
+                        <ul class="repo-card__topics" aria-label="Topics"></ul>
+                        <footer class="repo-card__foot"><time></time><button type="button" class="repo-pin" aria-pressed="false">Pin</button></footer>
+                    </article>
+                </li>
+            </template>
+        </div>
+    </section>
+
     <section id="contact" class="contact-section">
         <div class="contact-inner">
             <div class="section-label" aria-hidden="true"><span>06</span><span class="section-label-line"></span><span>Contact</span></div>
@@ -240,13 +359,66 @@
                     <a href="mailto:supyallukshyadl1@gmail.com"><i class="far fa-envelope fa-i" aria-hidden="true"><svg viewBox="0 0 512 512" style="width:1em" aria-hidden="true" focusable="false"><path d="M448 64H64C28.65 64 0 92.65 0 128v256c0 35.35 28.65 64 64 64h384c35.35 0 64-28.65 64-64V128C512 92.65 483.3 64 448 64zM64 112h384c8.822 0 16 7.178 16 16v22.16l-166.8 138.1c-23.19 19.28-59.34 19.27-82.47 .0156L48 150.2V128C48 119.2 55.18 112 64 112zM448 400H64c-8.822 0-16-7.178-16-16V212.7l136.1 113.4C204.3 342.8 229.8 352 256 352s51.75-9.188 71.97-25.98L464 212.7V384C464 392.8 456.8 400 448 400z"/></svg></i><span><small>Email</small>supyallukshyadl1@gmail.com</span></a>
                     <a href="tel:+917678695265"><i class="fas fa-phone-alt fa-i" aria-hidden="true"><svg viewBox="0 0 512 512" style="width:1em" aria-hidden="true" focusable="false"><path d="M18.92 351.2l108.5-46.52c12.78-5.531 27.77-1.801 36.45 8.98l44.09 53.82c69.25-34 125.5-90.31 159.5-159.5l-53.81-44.04c-10.75-8.781-14.41-23.69-8.974-36.47l46.51-108.5c6.094-13.91 21.1-21.52 35.79-18.11l100.8 23.25c14.25 3.25 24.22 15.8 24.22 30.46c0 252.3-205.2 457.5-457.5 457.5c-14.67 0-27.18-9.968-30.45-24.22l-23.25-100.8C-2.571 372.4 5.018 357.2 18.92 351.2z"/></svg></i><span><small>Phone</small>+91 7678695265</span></a>
                     <a href="https://www.linkedin.com/in/lukshya-supyal2006/" target="_blank" rel="noreferrer"><i class="fab fa-linkedin-in fa-i" aria-hidden="true"><svg viewBox="0 0 448 512" style="width:0.875em" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg></i><span><small>LinkedIn</small>Lukshya Supyal</span></a>
+                    <aside class="desk" id="desk" aria-labelledby="desk-title">
+                        <h3 class="desk__title" id="desk-title">From the desk</h3>
+                        <dl class="desk__clocks">
+                            <div><dt>Me, Phagwara</dt><dd><time id="desk-mine">--:--:--</time></dd></div>
+                            <div><dt>You, <span id="desk-zone">here</span></dt><dd><time id="desk-yours">--:--:--</time></dd></div>
+                        </dl>
+                        <p class="desk__note" id="desk-note" aria-live="off"></p>
+                        <figure class="desk__map">
+                            <iframe title="Map of Lovely Professional University, Phagwara" src="https://www.openstreetmap.org/export/embed.html?bbox=75.6905%2C31.2440%2C75.7200%2C31.2680&amp;layer=mapnik&amp;marker=31.2560%2C75.7051" loading="lazy" referrerpolicy="no-referrer"></iframe>
+                            <figcaption>Lovely Professional University, Punjab</figcaption>
+                        </figure>
+                        <div class="desk__distance">
+                            <button type="button" id="desk-locate">How far away are you?</button>
+                            <p id="desk-distance" role="status"></p>
+                        </div>
+                        <div class="voice" hidden>
+                            <audio preload="metadata">
+                                <source src="assets/audio/hello.m4a" type="audio/mp4">
+                                <source src="assets/audio/hello.mp3" type="audio/mpeg">
+                            </audio>
+                            <button type="button" class="voice__toggle" aria-label="Play voice note"><span aria-hidden="true"></span></button>
+                            <div class="voice__body">
+                                <p>Hi, in my own voice</p>
+                                <input type="range" class="voice__seek" min="0" max="1" step="0.01" value="0" aria-label="Seek voice note">
+                            </div>
+                            <span class="voice__time">0:00</span>
+                        </div>
+                    </aside>
                 </div>
-                <form class="contact-form" id="contact-form" data-to="supyallukshyadl1@gmail.com">
+                <form class="contact-form" id="contact-form" data-to="supyallukshyadl1@gmail.com" novalidate>
+                    <p class="form-draft" hidden><span></span> <button type="button">Start over</button></p>
                     <div class="field-row">
-                        <label><span>Your name</span><input type="text" name="user_name" placeholder="Name" required autocomplete="name"></label>
-                        <label><span>Your email</span><input type="email" name="user_email" placeholder="you@example.com" required autocomplete="email"></label>
+                        <div class="field">
+                            <label for="cf-name"><span>Your name</span></label>
+                            <input id="cf-name" type="text" name="user_name" placeholder="Name" required minlength="2" maxlength="60" autocomplete="name" aria-describedby="cf-name-error">
+                            <small class="field-error" id="cf-name-error"></small>
+                        </div>
+                        <div class="field">
+                            <label for="cf-email"><span>Your email</span></label>
+                            <input id="cf-email" type="email" name="user_email" placeholder="you@example.com" required autocomplete="email" inputmode="email" aria-describedby="cf-email-error">
+                            <small class="field-error" id="cf-email-error"></small>
+                        </div>
                     </div>
-                    <label><span>Your message</span><textarea name="message" placeholder="Tell me what you have in mind..." rows="5" required></textarea></label>
+                    <div class="field">
+                        <label for="cf-reason"><span>What's it about?</span></label>
+                        <select id="cf-reason" name="reason" required aria-describedby="cf-reason-error">
+                            <option value="" disabled selected>Choose one</option>
+                            <option value="work">Internship or job</option>
+                            <option value="collab">Building something together</option>
+                            <option value="oss">Open-source</option>
+                            <option value="hello">Just saying hi</option>
+                        </select>
+                        <small class="field-error" id="cf-reason-error"></small>
+                    </div>
+                    <div class="field">
+                        <label for="cf-message"><span>Your message</span></label>
+                        <textarea id="cf-message" name="message" placeholder="Tell me what you have in mind..." rows="5" required minlength="20" maxlength="1000" aria-describedby="cf-message-error cf-message-count"></textarea>
+                        <div class="field-meta"><small class="field-error" id="cf-message-error"></small><small class="field-count" id="cf-message-count"><span id="cf-count">0 / 1000</span></small></div>
+                    </div>
+                    <label class="hp" aria-hidden="true">Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
                     <div class="form-submit-row">
                         <p role="status" aria-live="polite"></p>
                         <button type="submit">Send message <span aria-hidden="true">&#8599;</span></button>
@@ -263,8 +435,9 @@
     <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-rail"><i class="scroll-progress-marker"></i></span></div>
 
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
-    <script src="assets/js/common.js?v=20260929i"></script>
+    <script src="assets/js/common.js?v=20261024a"></script>
     <script src="assets/js/blackhole.js?v=20260929i"></script>
+    <script type="module" src="assets/js/app.js?v=20261024a"></script>
 
 </body>
 </html>

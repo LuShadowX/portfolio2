@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lushadowx.github.io/CSE326-Portfolio/sitemap.xml

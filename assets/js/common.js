@@ -178,24 +178,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Contact form: no backend, so hand the message to the visitor's email app
+    // Contact form validation and sending moved to modules/contact-form.js
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const data = new FormData(contactForm);
-            const subject = `Portfolio message from ${data.get('user_name')}`;
-            const bodyText = `${data.get('message')}\n\n${data.get('user_name')} <${data.get('user_email')}>`;
-            window.location.href = `mailto:${contactForm.dataset.to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
-            contactForm.querySelector('[role="status"]').textContent = 'Opening your email app...';
-        });
-        // The menu button turns dark while a light section (About, Contact) sits under it
+        // The menu button turns dark while a light section (About, Repos, Contact) sits under it
         const underMenu = new Set();
         const lightWatch = new IntersectionObserver((entries) => {
             entries.forEach(entry => entry.isIntersecting ? underMenu.add(entry.target) : underMenu.delete(entry.target));
             body.classList.toggle('on-light', underMenu.size > 0);
         }, { rootMargin: '-40px 0px -90% 0px' });
-        document.querySelectorAll('.contact-section, .about-page, .cert-catalog').forEach(el => lightWatch.observe(el));
+        document.querySelectorAll('.contact-section, .repo-index, .about-page, .cert-catalog').forEach(el => lightWatch.observe(el));
     }
 
     // About + Skills in Orbit: reveal on scroll, the "Skills" hand-off, and the particle globe
