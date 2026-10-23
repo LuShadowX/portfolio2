@@ -2,7 +2,7 @@
 
 My personal site: who I am, what I've built, the open-source fixes I've landed, and a live index of everything on my GitHub.
 
-**Live:** https://lushadowx.github.io/CSE326-Portfolio/
+**Live:** https://lushadowx.github.io/portfolio2/
 
 No framework and no build step. It's plain HTML, CSS and JavaScript (ES modules), hosted on GitHub Pages.
 
