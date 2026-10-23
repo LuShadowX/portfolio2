@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio2 | CSE326 Project Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+    :root { --ink: #11110f; --muted: #57534b; --faint: #8e897e; --line: #11110f1f; --accent: #c15f3c; --paper: #f5f2ea; --code: #1b1b19; --green: #2f7a46; }
+    @page { size: A4; margin: 15mm 14mm 16mm; }
+    @page :first { margin: 0; }
+    * { box-sizing: border-box; }
+    html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { margin: 0; color: var(--ink); font: 9.6pt/1.55 'Inter', -apple-system, 'Segoe UI', sans-serif; }
+    h1, h2, h3, h4 { letter-spacing: -0.02em; line-height: 1.2; break-after: avoid; }
+    h2 { margin: 0 0 12px; font-size: 20pt; font-weight: 800; letter-spacing: -0.035em; }
+    h3 { margin: 20px 0 6px; font-size: 12pt; font-weight: 700; }
+    h4 { margin: 14px 0 4px; font-size: 10pt; font-weight: 700; }
+    p { margin: 0 0 8px; }
+    a { color: var(--ink); }
+    ul, ol { margin: 4px 0 10px; padding-left: 18px; }
+    li { margin-bottom: 3px; }
+    code { padding: 0.5px 4px; background: #11110f0f; border-radius: 3px; font: 8pt 'JetBrains Mono', ui-monospace, monospace; }
+    b, strong { font-weight: 650; }
+
+    .chapter { break-before: page; }
+    .kicker { margin: 0 0 6px; color: var(--accent); font: 600 7.5pt/1 'JetBrains Mono', monospace; letter-spacing: 0.16em; text-transform: uppercase; }
+    .lead { max-width: 160mm; margin-bottom: 14px; color: var(--muted); font-size: 10.6pt; line-height: 1.55; }
+
+    table { width: 100%; margin: 8px 0 14px; border-collapse: collapse; font-size: 8.5pt; }
+    th, td { padding: 5.5px 7px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    thead th { color: var(--muted); font: 600 7pt/1.3 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1.5px solid var(--ink); }
+    tbody th { font-weight: 650; }
+    tr { break-inside: avoid; }
+    .t-topics tbody th { width: 27%; }
+    .t-topics td:last-child { width: 13%; color: var(--accent); font: 600 7.6pt 'JetBrains Mono', monospace; white-space: nowrap; }
+    .ok { color: var(--green); font-weight: 700; }
+
+    figure { margin: 6px 0 14px; break-inside: avoid; }
+    figure img { display: block; width: 100%; border: 1px solid var(--line); border-radius: 6px; }
+    figcaption { margin-top: 5px; color: var(--muted); font-size: 8pt; line-height: 1.45; }
+    figcaption b { color: var(--ink); }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; align-items: start; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 10px; align-items: start; }
+    .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 10px; align-items: start; }
+    .fig-phone img { max-height: 125mm; object-fit: cover; object-position: top; }
+    .fig-tall img { max-height: 150mm; object-fit: cover; object-position: top; }
+    .fig-short img { max-height: 95mm; object-fit: cover; object-position: top; }
+
+    pre { margin: 6px 0 12px; padding: 10px 12px; overflow: hidden; color: #ecebe6; background: var(--code); border-radius: 6px; font: 7.4pt/1.5 'JetBrains Mono', ui-monospace, monospace; white-space: pre-wrap; break-inside: avoid; }
+    pre .file { display: block; margin-bottom: 6px; color: #e3a17f; font-weight: 600; }
+    .walk { display: grid; grid-template-columns: 1.15fr 1fr; gap: 14px; align-items: start; break-inside: avoid; margin-bottom: 6px; }
+    .walk pre { margin-top: 0; }
+    .walk p, .walk li { font-size: 8.8pt; }
+    .tags { margin: 6px 0 0; }
+    .tag { display: inline-block; margin: 0 4px 4px 0; padding: 1.5px 7px; color: var(--accent); background: #c15f3c14; border-radius: 99px; font: 600 7pt 'JetBrains Mono', monospace; }
+
+    .note { margin: 8px 0 12px; padding: 9px 12px; background: var(--paper); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; font-size: 9pt; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 12px 0 16px; }
+    .stat { padding: 12px; background: var(--paper); border-radius: 8px; }
+    .stat b { display: block; font-size: 19pt; font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; }
+    .stat span { color: var(--muted); font-size: 8pt; }
+    .co-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0 14px; }
+    .co-card { padding: 10px 11px; background: var(--paper); border-radius: 8px; font-size: 8.4pt; break-inside: avoid; }
+    .co-card b { display: block; margin-bottom: 2px; color: var(--accent); font: 700 8.5pt 'JetBrains Mono', monospace; }
+    .co-card em { display: block; margin-top: 5px; color: var(--muted); font-style: normal; font-size: 7.8pt; }
+    .prac { padding: 12px 0 4px; border-top: 1.5px solid var(--ink); break-inside: avoid; }
+    .prac h4 { margin: 0 0 4px; }
+    .prac h4 span { color: var(--accent); font-family: 'JetBrains Mono', monospace; margin-right: 6px; }
+    .toc { columns: 2; column-gap: 14mm; margin-top: 10px; padding: 0; list-style: none; }
+    .toc li { display: flex; gap: 10px; margin-bottom: 9px; padding-bottom: 7px; border-bottom: 1px solid var(--line); break-inside: avoid; font-size: 10pt; font-weight: 600; }
+    .toc li span { color: var(--accent); font: 600 9pt 'JetBrains Mono', monospace; }
+    .toc li small { display: block; color: var(--muted); font-weight: 400; font-size: 8.2pt; }
+
+    /* cover */
+    .cover { position: relative; height: 297mm; padding: 18mm 16mm 16mm; overflow: hidden; color: #f2f0e9; background: #0d0d0c; break-after: page; }
+    .cover__top { display: flex; justify-content: space-between; color: #f2f0e999; font: 600 7.5pt/1 'JetBrains Mono', monospace; letter-spacing: 0.16em; text-transform: uppercase; }
+    .cover h1 { margin: 22mm 0 6mm; font-size: 62pt; font-weight: 800; letter-spacing: -0.06em; line-height: 0.9; }
+    .cover h1 span { color: var(--accent); }
+    .cover__sub { max-width: 140mm; margin: 0 0 10mm; color: #f2f0e9cc; font-size: 12.5pt; line-height: 1.5; }
+    .cover__shot { width: 100%; height: 92mm; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #ffffff1f; }
+    .cover dl { position: absolute; left: 16mm; right: 16mm; bottom: 16mm; display: grid; grid-template-columns: 38mm 1fr 38mm 1fr; gap: 8px 10px; margin: 0; padding-top: 14px; border-top: 1px solid #f2f0e94d; font-size: 9pt; }
+    .cover dt { color: #f2f0e980; font: 600 7pt/1.8 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; }
+    .cover dd { margin: 0; }
+    .cover a { color: #f2f0e9; }
+    .blank { display: inline-block; min-width: 40mm; border-bottom: 1px solid #f2f0e980; }
+
+    .diagram { margin: 6px 0 14px; padding: 12px; background: var(--paper); border-radius: 8px; break-inside: avoid; }
+    .diagram svg { display: block; width: 100%; height: auto; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="cover">
+    <div class="cover__top"><span>CSE326 · Internet Programming Laboratory</span><span>Project report</span></div>
+    <h1>Portfolio<span>2</span></h1>
+    <p class="cover__sub">An interactive personal portfolio built with plain HTML5, CSS3 and JavaScript. It reads my repositories live from GitHub, validates and saves form input in the browser, uses the Geolocation, Drag and Drop and Web Storage APIs, and is deployed on GitHub Pages.</p>
+    <img class="cover__shot" src="images/10-repo-index.png" alt="">
+    <dl>
+        <dt>Student</dt><dd>Lukshya Singh Supyal</dd>
+        <dt>Registration no.</dt><dd><span class="blank">&nbsp;</span></dd>
+        <dt>Programme</dt><dd>B.Tech CSE, Semester 5</dd>
+        <dt>Course</dt><dd>CSE326 (L1 T0 P2 · 2 credits)</dd>
+        <dt>Live website</dt><dd><a href="https://lushadowx.github.io/portfolio2/">lushadowx.github.io/portfolio2</a></dd>
+        <dt>Source code</dt><dd><a href="https://github.com/LuShadowX/portfolio2">github.com/LuShadowX/portfolio2</a></dd>
+    </dl>
+</section>
+
+<!-- ============ CONTENTS ============ -->
+<section>
+    <p class="kicker">Contents</p>
+    <h2>What's in this report</h2>
+    <ol class="toc">
+        <li><span>01</span><div>Project overview<small>What it is, tech stack, numbers</small></div></li>
+        <li><span>02</span><div>How it's built<small>Architecture, files, data flow</small></div></li>
+        <li><span>03</span><div>Tour of the website<small>Every section with screenshots</small></div></li>
+        <li><span>04</span><div>New features in detail<small>Repo index, contact form, desk card</small></div></li>
+        <li><span>05</span><div>Course outcome mapping<small>CO1 to CO6 with evidence</small></div></li>
+        <li><span>06</span><div>Syllabus mapping, unit by unit<small>Every topic of Units I–VI</small></div></li>
+        <li><span>07</span><div>List of practicals<small>All 10 experiments with proof</small></div></li>
+        <li><span>08</span><div>Code walkthrough<small>Key snippets, explained</small></div></li>
+        <li><span>09</span><div>Testing and debugging<small>Test cases, error states, devices</small></div></li>
+        <li><span>10</span><div>Deployment on GitHub Pages<small>Repository, commits, hosting</small></div></li>
+        <li><span>11</span><div>Conclusion<small>What I learned</small></div></li>
+    </ol>
+    <div class="note" style="margin-top:14px">Every screenshot in this report was taken from the live site at <b>lushadowx.github.io/portfolio2</b>. Every code snippet is copied straight from the source files in the repository, so what you read here is exactly what runs.</div>
+</section>
+
+<!-- ============ 01 OVERVIEW ============ -->
+<section class="chapter">
+    <p class="kicker">01 · Project overview</p>
+    <h2>A portfolio that does more than sit there</h2>
+    <p class="lead">Portfolio2 is my personal website. It introduces me, shows my projects, certificates and open-source work, and lets people get in touch. I built it as a client-side web application: no framework, no build tools, just HTML, CSS and JavaScript running in the browser.</p>
+
+    <div class="stats">
+        <div class="stat"><b>6</b><span>JavaScript ES modules added</span></div>
+        <div class="stat"><b>~1,600</b><span>lines of new HTML, CSS and JS</span></div>
+        <div class="stat"><b>6 / 6</b><span>course outcomes covered</span></div>
+        <div class="stat"><b>10 / 10</b><span>lab practicals covered</span></div>
+    </div>
+
+    <h3>What the site has</h3>
+    <table>
+        <thead><tr><th>Section</th><th>What it does</th><th>Main syllabus areas</th></tr></thead>
+        <tbody>
+            <tr><th>Intro and hero</th><td>Animated title, paper-cutout stickers you can drag, my name and a call to action</td><td>HTML5, CSS animations, positioning</td></tr>
+            <tr><th>Building in public</th><td>GitHub contribution heatmap for the last 12 months, drawn as SVG from an API</td><td>Fetch, JSON, SVG</td></tr>
+            <tr><th>About and skills</th><td>My story, experience, skills, and a skills "orbit" drawn on canvas</td><td>Semantic HTML, Grid, typography</td></tr>
+            <tr><th>Certificates</th><td>A 3D keypad: press a key to open the certificate card, with key sounds</td><td>Events, audio, JSON data</td></tr>
+            <tr><th>Projects, open source, notes</th><td>Slide-in catalogue of my work, built from JSON inside the page</td><td>Dynamic content, transitions</td></tr>
+            <tr><th>Repo index <i>(new)</i></th><td>All my GitHub repositories, live. Search with filters, card or table view, pin favourites to a shelf by drag and drop.</td><td>Fetch, regex, Web Storage, Drag and Drop, tables</td></tr>
+            <tr><th>Contact <i>(rebuilt)</i></th><td>Validated contact form with a saved draft, and a "From the desk" card with live clocks, a map, location distance and a voice note</td><td>Forms, regex, Date, Geolocation, iframe, audio</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Technology used</h3>
+    <table>
+        <tbody>
+            <tr><th style="width:24%">Structure</th><td>HTML5: semantic elements, forms, table, template, SVG, video, audio, iframe, JSON-LD</td></tr>
+            <tr><th>Presentation</th><td>CSS3: custom properties, Flexbox, Grid, media queries, container queries, <code>:has()</code>, pseudo-elements, counters, keyframes, transitions</td></tr>
+            <tr><th>Behaviour</th><td>JavaScript (ES2022), split into ES modules, with no libraries in the new code</td></tr>
+            <tr><th>Browser APIs</th><td>DOM, Fetch, Web Storage, Geolocation, Drag and Drop, HTMLMediaElement, IntersectionObserver, Intl, Performance</td></tr>
+            <tr><th>External services</th><td>GitHub REST API, GitHub contributions API, OpenStreetMap embed</td></tr>
+            <tr><th>Tools</th><td>VS Code, Chrome DevTools, Git, GitHub, GitHub Pages, GitHub Copilot</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- ============ 02 ARCHITECTURE ============ -->
+<section class="chapter">
+    <p class="kicker">02 · How it's built</p>
+    <h2>Architecture</h2>
+    <p class="lead">The site follows the client–server model. GitHub Pages is the web server that sends the files. Once the page is in the browser, JavaScript talks to other servers (the GitHub API, OpenStreetMap) to pull in live data.</p>
+
+    <div class="diagram">
+        <svg viewBox="0 0 760 250" font-family="Inter, sans-serif" font-size="11">
+            <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#11110f"/></marker></defs>
+            <rect x="10" y="20" width="200" height="210" rx="10" fill="#fff" stroke="#11110f" stroke-width="1.4"/>
+            <text x="110" y="42" text-anchor="middle" font-weight="700">Browser (client)</text>
+            <rect x="26" y="56" width="168" height="30" rx="6" fill="#f5f2ea"/><text x="110" y="75" text-anchor="middle">index.html</text>
+            <rect x="26" y="94" width="80" height="30" rx="6" fill="#f5f2ea"/><text x="66" y="113" text-anchor="middle">CSS</text>
+            <rect x="114" y="94" width="80" height="30" rx="6" fill="#f5f2ea"/><text x="154" y="113" text-anchor="middle">common.js</text>
+            <rect x="26" y="132" width="168" height="30" rx="6" fill="#c15f3c" /><text x="110" y="151" text-anchor="middle" fill="#fff" font-weight="600">app.js → ES modules</text>
+            <rect x="26" y="170" width="168" height="44" rx="6" fill="#f5f2ea"/><text x="110" y="188" text-anchor="middle">localStorage</text><text x="110" y="204" text-anchor="middle">sessionStorage</text>
+
+            <rect x="300" y="20" width="190" height="56" rx="10" fill="#fff" stroke="#11110f" stroke-width="1.4"/>
+            <text x="395" y="44" text-anchor="middle" font-weight="700">GitHub Pages</text><text x="395" y="62" text-anchor="middle" fill="#57534b">serves HTML, CSS, JS, JSON</text>
+            <rect x="300" y="96" width="190" height="56" rx="10" fill="#fff" stroke="#11110f" stroke-width="1.4"/>
+            <text x="395" y="120" text-anchor="middle" font-weight="700">GitHub REST API</text><text x="395" y="138" text-anchor="middle" fill="#57534b">/users/LuShadowX/repos</text>
+            <rect x="300" y="172" width="190" height="56" rx="10" fill="#fff" stroke="#11110f" stroke-width="1.4"/>
+            <text x="395" y="196" text-anchor="middle" font-weight="700">OpenStreetMap</text><text x="395" y="214" text-anchor="middle" fill="#57534b">map tiles in an iframe</text>
+
+            <path d="M300 48 H220" stroke="#11110f" stroke-width="1.3" marker-end="url(#arr)"/><text x="260" y="42" text-anchor="middle" font-size="9" fill="#57534b">HTTP GET</text>
+            <path d="M220 147 H300" stroke="#11110f" stroke-width="1.3" marker-end="url(#arr)"/><text x="260" y="141" text-anchor="middle" font-size="9" fill="#57534b">fetch()</text>
+            <path d="M220 200 H300" stroke="#11110f" stroke-width="1.3" marker-end="url(#arr)"/>
+
+            <rect x="560" y="20" width="190" height="208" rx="10" fill="#fff" stroke="#c15f3c" stroke-width="1.4" stroke-dasharray="5 4"/>
+            <text x="655" y="44" text-anchor="middle" font-weight="700">Repo index: data path</text>
+            <rect x="578" y="60" width="154" height="34" rx="6" fill="#f5f2ea"/><text x="655" y="81" text-anchor="middle">1. sessionStorage cache</text>
+            <rect x="578" y="112" width="154" height="34" rx="6" fill="#f5f2ea"/><text x="655" y="133" text-anchor="middle">2. live GitHub API</text>
+            <rect x="578" y="164" width="154" height="34" rx="6" fill="#f5f2ea"/><text x="655" y="185" text-anchor="middle">3. saved repos.json</text>
+            <path d="M655 94 V110" stroke="#c15f3c" stroke-width="1.3" marker-end="url(#arr)"/><path d="M655 146 V162" stroke="#c15f3c" stroke-width="1.3" marker-end="url(#arr)"/>
+            <text x="662" y="105" font-size="8.5" fill="#57534b">miss / expired</text><text x="662" y="157" font-size="8.5" fill="#57534b">error / 403 / timeout</text>
+        </svg>
+    </div>
+
+    <h3>Files</h3>
+    <table>
+        <thead><tr><th>File</th><th>Job</th><th>Lines</th></tr></thead>
+        <tbody>
+            <tr><th><code>index.html</code></th><td>The page: head metadata, every section, the form, table and card template</td><td>443</td></tr>
+            <tr><th><code>assets/css/main.css</code></th><td>Styles for the whole site, including the new form and desk card</td><td>1979</td></tr>
+            <tr><th><code>assets/css/repo-index.css</code></th><td>Styles for the repo index: controls, cards, shelf, table, container query</td><td>272</td></tr>
+            <tr><th><code>assets/js/app.js</code></th><td>Entry point. Starts each feature safely and loads the repo index lazily.</td><td>34</td></tr>
+            <tr><th><code>modules/repo-index.js</code></th><td>Fetching, search parsing, filtering, sorting, rendering, pins, drag and drop</td><td>634</td></tr>
+            <tr><th><code>modules/contact-form.js</code></th><td>Validation rules, live errors, counter, draft autosave, submit</td><td>146</td></tr>
+            <tr><th><code>modules/desk.js</code></th><td>Clocks and time zones, geolocation distance, voice-note player</td><td>152</td></tr>
+            <tr><th><code>modules/storage.js</code></th><td>Safe wrapper around localStorage and sessionStorage, plus a cache with expiry</td><td>45</td></tr>
+            <tr><th><code>modules/utils.js</code></th><td>Small helpers: <code>$</code>, <code>debounce</code>, <code>escapeHTML</code>, <code>timeAgo</code></td><td>38</td></tr>
+            <tr><th><code>modules/debug.js</code></th><td><code>?debug</code> logging, timings and the error guard</td><td>35</td></tr>
+            <tr><th><code>assets/js/common.js</code></th><td>Existing effects: menu, reveals, heatmap, cursor, certificates, projects</td><td>1238</td></tr>
+            <tr><th><code>assets/data/repos.json</code></th><td>Saved copy of my repositories, used when GitHub can't be reached</td><td>data</td></tr>
+            <tr><th><code>robots.txt</code>, <code>sitemap.xml</code></th><td>Search engine instructions and page list</td><td>SEO</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- ============ 03 TOUR ============ -->
+<section class="chapter">
+    <p class="kicker">03 · Tour of the website</p>
+    <h2>The page, top to bottom</h2>
+    <p class="lead">These are the sections a visitor scrolls through. The first five were already part of my portfolio. They are where most of the HTML and CSS work (Units I–III) lives.</p>
+    <div class="grid3">
+        <figure class=""><img src="images/01-intro.png" alt=""><figcaption><b>Fig. 1</b> · <b>Intro stage.</b> Animated "Ideas Into Reality" title and paper-cutout stickers that can be dragged with the mouse. Absolute positioning, transforms, keyframe animations, SVG.</figcaption></figure>
+        <figure class=""><img src="images/02-hero.png" alt=""><figcaption><b>Fig. 2</b> · <b>Hero.</b> Name, role and call to action. Large fluid typography with <code>clamp()</code>. The top bar uses Grid and Flexbox.</figcaption></figure>
+        <figure class=""><img src="images/04-about.png" alt=""><figcaption><b>Fig. 3</b> · <b>About me.</b> <code>article</code> + <code>aside</code> layout, experience and skills lists, images with <code>alt</code> text, scroll-reveal transitions.</figcaption></figure>
+        <figure class=""><img src="images/05-skills.png" alt=""><figcaption><b>Fig. 4</b> · <b>Skills in orbit.</b> Skill icons placed around an orbit with CSS positioning, and a particle globe on canvas.</figcaption></figure>
+        <figure class=""><img src="images/06-certificates.png" alt=""><figcaption><b>Fig. 5</b> · <b>Certificates.</b> A keypad you press to open each certificate. Key sounds are made with the Web Audio API. Certificate data is JSON inside a <code>script</code> tag.</figcaption></figure>
+        <figure class=""><img src="images/07-projects.png" alt=""><figcaption><b>Fig. 6</b> · <b>Projects.</b> Catalogue built from JSON at runtime: titles, tags, links and a detail panel.</figcaption></figure>
+        <figure class=""><img src="images/03-github-activity.png" alt=""><figcaption><b>Fig. 7</b> · <b>Building in public.</b> The contribution heatmap is fetched as JSON and drawn as an SVG grid, one <code>rect</code> per day, each with a <code>title</code> tooltip.</figcaption></figure>
+    </div>
+</section>
+
+<!-- ============ 04 FEATURES ============ -->
+<section class="chapter">
+    <p class="kicker">04 · New features in detail</p>
+    <h2>Repo index</h2>
+    <p class="lead">A live list of every repository on my GitHub account, sitting between the projects and the contact section. It's the main client-side application in the project and covers most of Units IV, V and VI.</p>
+    <figure class="fig-tall"><img src="images/10-repo-index.png" alt=""><figcaption><b>Fig. 8</b> · <b>The repo index.</b> Heading, totals and a language bar, filter controls, the pin shelf, and the repository cards.</figcaption></figure>
+    <figure class=""><img src="images/11-repo-overview.png" alt=""><figcaption><b>Fig. 9</b> · <b>Totals and language bar.</b> Counts are calculated with <code>filter</code> and <code>reduce</code>. The coloured bar is an SVG that JavaScript generates from the data.</figcaption></figure>
+    <figure class=""><img src="images/12-repo-controls.png" alt=""><figcaption><b>Fig. 10</b> · <b>Controls.</b> Search input, two <code>select</code> menus, a switch-style checkbox, and a radio group (<code>fieldset</code> + <code>legend</code>) for the view. The hint line shows the search filters.</figcaption></figure>
+
+    <h3>Search with filters</h3>
+    <p>The search box reads GitHub-style filters using regular expressions: <code>lang:python</code>, <code>topic:cli</code>, <code>stars:&gt;2</code>, <code>stars:1..5</code>, <code>is:fork</code>, plus normal words. If a filter can't be read, it says so instead of failing silently.</p>
+    <div class="grid2">
+        <figure class="fig-short"><img src="images/13-search-qualifiers.png" alt=""><figcaption><b>Fig. 11</b> · <b><code>lang:python stars:&gt;0</code></b> narrows 49 repos to the 3 Python repos with at least one star.</figcaption></figure>
+        <div>
+        <figure class=""><img src="images/14-search-invalid.png" alt=""><figcaption><b>Fig. 12</b> · <b>Bad filter.</b> <code>stars:abc</code> can't be parsed, so the status line explains it and suggests a valid form.</figcaption></figure>
+        <figure class=""><img src="images/18-card-hover.png" alt=""><figcaption><b>Fig. 13</b> · <b>A card.</b> Language dot, star count, description, "pushed 3 hours ago" (relative time) and a Pin button. On hover the card lifts and the colour bar runs across the top.</figcaption></figure>
+        </div>
+    </div>
+
+    <h3>Pin shelf (Drag and Drop + localStorage)</h3>
+    <p>Visitors can keep up to six repositories on a shelf. They can drag a card onto it, press its Pin button, or use the keyboard: arrow keys move a focused pin and Delete removes it. The order is saved in <code>localStorage</code>, so it's still there after a reload.</p>
+    <figure class=""><img src="images/15-shelf-pins.png" alt=""><figcaption><b>Fig. 14</b> · <b>Shelf with four pins.</b> Numbers come from a CSS counter. The second chip has keyboard focus (orange outline).</figcaption></figure>
+    <figure class=""><img src="images/16-drag-over.png" alt=""><figcaption><b>Fig. 15</b> · <b>While dragging.</b> The card being dragged fades, and the shelf switches to a solid highlighted border to show it will accept the drop.</figcaption></figure>
+
+    <h3>Table view</h3>
+    <figure class=""><img src="images/17-table-sorted.png" alt=""><figcaption><b>Fig. 16</b> · <b>Table view, sorted by stars.</b> A real <code>&lt;table&gt;</code> with <code>caption</code>, <code>thead</code> and <code>th scope</code>. Clicking a header sorts the column and sets <code>aria-sort</code>, which the arrow next to "Stars" shows.</figcaption></figure>
+</section>
+
+<section class="chapter">
+    <p class="kicker">04 · New features in detail</p>
+    <h2>Contact form</h2>
+    <p class="lead">The old form only had the browser's built-in checks. The new one validates every field with JavaScript and regular expressions, explains errors in plain words, and never loses what the visitor typed.</p>
+    <div class="grid2">
+        <figure class=""><img src="images/21-form-errors.png" alt=""><figcaption><b>Fig. 17</b> · <b>Submit with empty fields.</b> All four errors appear, each field gets <code>aria-invalid="true"</code>, and focus jumps to the first problem.</figcaption></figure>
+        <figure class=""><img src="images/22-form-valid.png" alt=""><figcaption><b>Fig. 18</b> · <b>Filled in correctly.</b> Errors clear while typing. The counter shows characters used out of 1000.</figcaption></figure>
+    </div>
+    <figure class="fig-short"><img src="images/23-draft-restored.png" alt=""><figcaption><b>Fig. 19</b> · <b>Draft restored after a reload.</b> The form autosaves to <code>localStorage</code> (debounced to 400 ms). On the next visit it fills itself back in and offers "Start over".</figcaption></figure>
+    <table>
+        <thead><tr><th>Field</th><th>Rule</th><th>Message shown</th></tr></thead>
+        <tbody>
+            <tr><th>Name</th><td>Required, 2–60 characters, regex <code>/^\p{L}[\p{L}\p{M} .'-]{1,59}$/u</code> (letters from any language)</td><td>"Letters, spaces, dots and hyphens only."</td></tr>
+            <tr><th>Email</th><td>Required, regex <code>/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i</code></td><td>"That email doesn't look complete…"</td></tr>
+            <tr><th>Reason</th><td>Required <code>select</code></td><td>"Pick the closest one…"</td></tr>
+            <tr><th>Message</th><td>20–1000 characters, at most two links (counted with a URL regex)</td><td>"At least 20 characters (n to go)."</td></tr>
+            <tr><th>Website (hidden)</th><td>Honeypot: people never see it, bots fill it in, so the submission is ignored</td><td>none</td></tr>
+        </tbody>
+    </table>
+
+    <h2 style="margin-top:20px">From the desk</h2>
+    <div class="grid2">
+        <figure class=""><img src="images/24-desk.png" alt=""><figcaption><b>Fig. 20</b> · <b>The desk card</b>, as seen by a visitor in London who allowed location from Delhi.</figcaption></figure>
+        <div>
+            <ul>
+                <li><b>Two live clocks</b> using <code>Intl.DateTimeFormat</code> with time zones: mine (Asia/Kolkata) and the visitor's. They tick exactly on each second.</li>
+                <li><b>Time-zone gap</b>: the offset name like "GMT+5:30" is read with a regex and turned into minutes. The note changes with my local hour.</li>
+                <li><b>Map</b>: OpenStreetMap inside an <code>&lt;iframe&gt;</code> with <code>title</code> and <code>loading="lazy"</code>.</li>
+                <li><b>"How far away are you?"</b> asks for location only on click (Geolocation API), handles every error code, and computes the distance with the haversine formula. Nothing is stored.</li>
+                <li><b>Voice note</b>: a custom <code>&lt;audio&gt;</code> player with play/pause and a seek bar, driven by media events. It stays hidden until a recording file exists.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Accessibility and mobile</h3>
+    <figure class=""><img src="images/25-skip-link.png" alt=""><figcaption><b>Fig. 21</b> · <b>Skip link.</b> The first Tab press shows "Skip to content", so keyboard users can jump past the intro.</figcaption></figure>
+    <div class="grid4">
+        <figure class="fig-phone"><img src="images/30-mobile-repos.png" alt=""><figcaption><b>Fig. 22</b> · Repo index at 390 px.</figcaption></figure>
+        <figure class="fig-phone"><img src="images/31-mobile-cards.png" alt=""><figcaption><b>Fig. 23</b> · Cards in one column.</figcaption></figure>
+        <figure class="fig-phone"><img src="images/32-mobile-table.png" alt=""><figcaption><b>Fig. 24</b> · Table rows stack (container query).</figcaption></figure>
+        <figure class="fig-phone"><img src="images/33-mobile-form.png" alt=""><figcaption><b>Fig. 25</b> · Contact form on a phone.</figcaption></figure>
+    </div>
+</section>
+
+<!-- ============ 05 CO MAPPING ============ -->
+<section class="chapter">
+    <p class="kicker">05 · Course outcome mapping</p>
+    <h2>How each course outcome is met</h2>
+    <p class="lead">CSE326 lists six course outcomes. The table shows where each one appears in the project and which figures in this report prove it.</p>
+    <div class="co-cards">
+        <div class="co-card"><b>CO1</b>understand the fundamentals of Internet technologies and HTML5 for web page development<em>Evidence: Figs 1, 7, 20</em></div>
+        <div class="co-card"><b>CO2</b>explain the concept of semantic HTML, web accessibility, and web form concepts<em>Evidence: Figs 10, 16, 28, 21</em></div>
+        <div class="co-card"><b>CO3</b>apply the CSS techniques to design responsive and visually appealing web interfaces<em>Evidence: Figs 8, 13, 24</em></div>
+        <div class="co-card"><b>CO4</b>apply the JavaScript programming concepts to develop dynamic client-side applications<em>Evidence: Figs 9, 11; Section 08</em></div>
+        <div class="co-card"><b>CO5</b>demonstrate the interactive web applications using DOM manipulation, events, and browser APIs<em>Evidence: Figs 27, 15, 19, 20</em></div>
+        <div class="co-card"><b>CO6</b>analyze and deploy client-side web applications using debugging tools and GitHub Pages<em>Evidence: Figs 29, 30, 31</em></div>
+    </div>
+    <table>
+        <thead><tr><th style="width:8%">CO</th><th>How the project meets it</th><th style="width:22%">Where</th></tr></thead>
+        <tbody>
+            <tr><th>CO1</th><td>The client–server model in practice: GitHub Pages serves the files, and the browser calls the GitHub API and gets JSON back. A complete HTML5 document with metadata. Text formatting, lists, links and images. SVG drawn by hand and generated by script. Video, audio and an iframe. SEO through description, canonical, Open Graph, JSON-LD, sitemap and robots.txt.</td><td><code>index.html</code>, <code>sitemap.xml</code>, <code>robots.txt</code></td></tr>
+            <tr><th>CO2</th><td>Semantic layout (<code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>aside</code>, <code>footer</code>, <code>figure</code>, <code>time</code>). Accessibility: skip link, labels, live regions, <code>aria-invalid</code>, <code>aria-describedby</code>, <code>aria-pressed</code>, <code>aria-sort</code>, and a keyboard alternative to dragging. Forms: search, email, text, select, checkbox, radio, range, textarea. An accessible data table.</td><td><code>index.html</code></td></tr>
+            <tr><th>CO3</th><td>Design tokens as CSS variables. Grid and Flexbox layouts. Media queries at 980, 760 and 480 px, plus a container query. Pseudo-classes and pseudo-elements, attribute selectors, custom form controls, counters, keyframe animations and transitions, and reduced-motion support.</td><td><code>repo-index.css</code>, <code>main.css</code></td></tr>
+            <tr><th>CO4</th><td>Constants and variables, every data type, modern operators, string and number methods, conditionals, normal, arrow and async functions, closures, array methods, objects, <code>Map</code> and <code>Set</code>. Used to build a real application, not separate exercises.</td><td><code>modules/*.js</code></td></tr>
+            <tr><th>CO5</th><td>DOM creation from a <code>&lt;template&gt;</code> and with <code>insertRow</code>. Click, input, change, keydown, focusout, submit, drag and media events. Regex validation and search. Date and time zones. Web Storage. Fetch and JSON. Geolocation. Drag and Drop.</td><td><code>repo-index.js</code>, <code>contact-form.js</code>, <code>desk.js</code></td></tr>
+            <tr><th>CO6</th><td>A <code>?debug</code> mode with <code>console.table</code> and Performance timings. Global error listeners. A guard so one failing feature can't break the page. try/catch/finally with a three-step fallback. Code split into modules. Lazy loading and debouncing for performance. Hosted with GitHub Pages and managed with Git commits.</td><td><code>app.js</code>, <code>debug.js</code>, GitHub</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- ============ 06 SYLLABUS ============ -->
+<section class="chapter">
+    <p class="kicker">06 · Syllabus mapping</p>
+    <h2>Every syllabus topic, unit by unit</h2>
+    <p class="lead">Each row is a topic exactly as written in the CSE326 syllabus. The middle column says how the project uses it, and the last column points to the proof.</p>
+
+    <h3>Unit I: HTML Fundamentals</h3>
+    <table class="t-topics">
+        <thead><tr><th>Topic</th><th>How Portfolio2 uses it</th><th>Proof</th></tr></thead>
+        <tbody>
+            <tr><th>Introduction to Internet and Web Technologies</th><td>The site lives on the web at a public URL, uses HTTP(S) and the GitHub REST API, and loads fonts and a map from other servers</td><td>§02</td></tr>
+            <tr><th>Client-Server Architecture</th><td>The browser is the client. GitHub Pages and the GitHub API are servers. The code reads status codes (403 rate limit) and reacts to them.</td><td>§02, Fig 29</td></tr>
+            <tr><th>HTML5 Fundamentals</th><td>HTML5 doctype, new elements (<code>template</code>, <code>time</code>, <code>figure</code>), new input types, native audio and video</td><td><code>index.html</code></td></tr>
+            <tr><th>HTML Document Structure</th><td><code>html lang</code>, a <code>head</code> with charset, viewport, title, meta and links, then a <code>body</code> with semantic sections</td><td>§08</td></tr>
+            <tr><th>HTML Elements and Attributes</th><td>Global attributes (<code>id</code>, <code>class</code>, <code>hidden</code>, <code>tabindex</code>), <code>data-*</code> attributes as JS hooks, <code>draggable</code>, <code>loading</code>, <code>rel</code></td><td><code>index.html</code></td></tr>
+            <tr><th>Text Formatting</th><td><code>strong</code>, <code>em</code>, <code>b</code>, <code>small</code>, <code>code</code>, <code>kbd</code> (keyboard hints)</td><td>Fig 10</td></tr>
+            <tr><th>Lists</th><td><code>ol</code> for the ordered pin shelf, <code>ul</code> for cards, topics and the language legend, <code>dl</code> for the clocks</td><td>Figs 27, 20</td></tr>
+            <tr><th>Hyperlinks and Images</th><td>Nav links, in-page anchors, external links with <code>target</code> and <code>rel="noopener"</code>, images with <code>alt</code>, <code>width</code>/<code>height</code> and lazy loading</td><td>Figs 2, 3</td></tr>
+            <tr><th>SVG Graphics</th><td>Inline SVG icons, the heatmap (one <code>rect</code> per day), and the language bar generated from data</td><td>Figs 7, 9</td></tr>
+            <tr><th>Multimedia Elements Audio, Video and Iframes</th><td><code>&lt;audio&gt;</code> voice note with two sources, <code>&lt;video&gt;</code> menu previews, OpenStreetMap <code>&lt;iframe&gt;</code></td><td>Fig 20</td></tr>
+            <tr><th>SEO fundamentals</th><td>Title, meta description, canonical URL, Open Graph and Twitter tags, JSON-LD <code>Person</code> schema, sitemap.xml, robots.txt</td><td>§08</td></tr>
+            <tr><th>HTML Best Practices</th><td>Semantic tags over <code>div</code>s, every image has <code>alt</code>, every input has a label, no inline event handlers in the new code, a <code>noscript</code> message</td><td><code>index.html</code></td></tr>
+        </tbody>
+    </table>
+
+    <h3>Unit II: Semantic HTML and Forms</h3>
+    <table class="t-topics">
+        <thead><tr><th>Topic</th><th>How Portfolio2 uses it</th><th>Proof</th></tr></thead>
+        <tbody>
+            <tr><th>Semantic HTML Elements</th><td><code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>aside</code>, <code>footer</code>, <code>figure</code>/<code>figcaption</code>, <code>time datetime</code></td><td>§08</td></tr>
+            <tr><th>Page Structure and Layout</th><td>Each section is labelled with <code>aria-labelledby</code>. Headings run in order. Each card is an <code>article</code> with a <code>footer</code>.</td><td>Fig 8</td></tr>
+            <tr><th>Accessibility Fundamentals</th><td>Skip link, visible focus outlines, live regions announce results and pin changes, buttons have text or <code>aria-label</code></td><td>Figs 21, 27</td></tr>
+            <tr><th>Forms and Form Controls</th><td>Contact form plus the filter form (<code>role="search"</code>): input, select, textarea, checkbox, radio, range, button</td><td>Figs 10, 28</td></tr>
+            <tr><th>Input Types and Attributes</th><td><code>search</code>, <code>email</code>, <code>text</code>, <code>checkbox</code>, <code>radio</code>, <code>range</code>. <code>required</code>, <code>minlength</code>, <code>maxlength</code>, <code>autocomplete</code>, <code>inputmode</code>, <code>placeholder</code>, <code>spellcheck</code>.</td><td>§08</td></tr>
+            <tr><th>Form Validation Basics</th><td>HTML constraints are in the markup. <code>novalidate</code> hands control to JavaScript for clearer messages.</td><td>Fig 28</td></tr>
+            <tr><th>Tables and Data Representation</th><td>Repo table with <code>caption</code>, <code>thead</code>/<code>tbody</code>, <code>th scope="col"</code> / <code>scope="row"</code>, and sortable headers</td><td>Fig 16</td></tr>
+            <tr><th>Accessibility Standards</th><td>WCAG-style practice: <code>aria-invalid</code> + <code>aria-describedby</code> for errors, <code>aria-sort</code>, <code>aria-pressed</code>, <code>aria-live</code>, <code>prefers-reduced-motion</code>, everything usable by keyboard</td><td>Figs 28, 16</td></tr>
+            <tr><th>Responsive Content Structuring</th><td>Content order makes sense in one column. Controls go from 5 columns to 2 to 1. The table turns into stacked rows.</td><td>Figs 22 to 25</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="chapter">
+    <h3 style="margin-top:0">Unit III: Cascading Style Sheets</h3>
+    <table class="t-topics">
+        <thead><tr><th>Topic</th><th>How Portfolio2 uses it</th><th>Proof</th></tr></thead>
+        <tbody>
+            <tr><th>Introduction to CSS</th><td>Two external stylesheets linked in the head, organised by section, with a cache-busting version query</td><td>§02</td></tr>
+            <tr><th>CSS Selectors and Specificity</th><td>Low-specificity class selectors with BEM-style names (<code>.repo-card__name</code>), state classes (<code>.is-over</code>), descendant and child selectors</td><td><code>repo-index.css</code></td></tr>
+            <tr><th>Colors and Backgrounds</th><td>Hex colours with alpha (<code>#11110f24</code>), gradients for the shimmer and seek bar, an SVG data-URI as the select arrow</td><td>Fig 10</td></tr>
+            <tr><th>Units and Measurements</th><td><code>px</code>, <code>rem</code>, <code>em</code>, <code>%</code>, <code>vw</code>, <code>mm</code> (print), and <code>clamp()</code> for fluid headings</td><td><code>repo-index.css</code></td></tr>
+            <tr><th>Typography</th><td>Inter for text, a monospace face for labels, tight letter-spacing on headings, <code>font-variant-numeric: tabular-nums</code> for clocks and counts</td><td>Figs 8, 20</td></tr>
+            <tr><th>Text Styling</th><td>Uppercase spaced labels, outlined heading text (<code>-webkit-text-stroke</code>), animated underline, line clamping to three lines</td><td>Fig 13</td></tr>
+            <tr><th>Box Model</th><td><code>box-sizing: border-box</code>, padding, borders and radius on cards, chips and the shelf</td><td>Fig 13</td></tr>
+            <tr><th>Positioning Techniques</th><td>Relative cards with an absolute colour bar, the absolute <code>kbd</code> hint, the drop marker, the fixed skip link, the sticky top bar</td><td>Figs 15, 21</td></tr>
+            <tr><th>Flexbox Layout</th><td>Shelf chips, card footers, status line, desk distance row, voice player</td><td>Fig 27</td></tr>
+            <tr><th>CSS Grid Layout</th><td>Card list (<code>repeat(auto-fill, minmax(min(100%, 280px), 1fr))</code>), the controls row, the heading layout, the clocks</td><td>Fig 8</td></tr>
+            <tr><th>Pseudo Classes</th><td><code>:hover</code>, <code>:focus</code>, <code>:focus-visible</code>, <code>:checked</code>, <code>:invalid</code>, <code>:disabled</code>, <code>:empty</code>, <code>:has()</code>, <code>:not()</code>, <code>:first-of-type</code>, <code>:placeholder-shown</code></td><td>§08</td></tr>
+            <tr><th>Pseudo Elements</th><td><code>::before</code> and <code>::after</code> for language dots, counter numbers, sort arrows and the switch knob. <code>::placeholder</code>, range thumbs.</td><td>Figs 27, 16</td></tr>
+            <tr><th>Attribute Selectors</th><td><code>[data-fork="true"]</code>, <code>[aria-pressed="true"]</code>, <code>[aria-sort="ascending"]</code>, <code>[data-state="error"]</code>, <code>[data-label]</code>, <code>[hidden]</code></td><td>§08</td></tr>
+            <tr><th>Form Styling</th><td>Underlined inputs, a custom select arrow, a switch-style checkbox, segmented radio buttons, a styled range slider, red error states</td><td>Figs 10, 28</td></tr>
+            <tr><th>CSS Variables</th><td>Section tokens (<code>--ink</code>, <code>--paper</code>, <code>--accent</code>) and per-item variables set from JS (<code>--lang</code>, <code>--progress</code>, <code>--dot</code>)</td><td>§08</td></tr>
+            <tr><th>Responsive Web Design</th><td>Media queries at 980, 760 and 480 px, <code>hover: none</code> for touch screens, and a container query on the results</td><td>Figs 22 to 25</td></tr>
+            <tr><th>CSS Animations</th><td><code>@keyframes repo-shimmer</code> (loading cards), <code>shelf-nope</code> (shake when the shelf is full), plus the site's intro animations</td><td>§08</td></tr>
+            <tr><th>CSS Transitions</th><td>Card lift, colour bar growth, underline, switch knob, chip spacing during drag, button colours</td><td>Fig 13</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Unit IV: JavaScript Fundamentals</h3>
+    <table class="t-topics">
+        <thead><tr><th>Topic</th><th>How Portfolio2 uses it</th><th>Proof</th></tr></thead>
+        <tbody>
+            <tr><th>Introduction to JavaScript</th><td>Loaded as ES modules (<code>type="module"</code>), running after the HTML is parsed</td><td>§02</td></tr>
+            <tr><th>Variables and Constants</th><td><code>const</code> by default (settings such as <code>MAX_PINS</code>, <code>USER</code>), <code>let</code> only where a value changes (<code>dragging</code>, <code>timer</code>)</td><td>§08</td></tr>
+            <tr><th>Data Types</th><td>string, number, boolean, null, undefined, objects, arrays, <code>Date</code>, <code>Map</code>, <code>Set</code>, regular expressions</td><td>§08</td></tr>
+            <tr><th>Operators and Expressions</th><td><code>??</code>, <code>?.</code>, <code>||</code>/<code>&amp;&amp;</code> short-circuit, spread, <code>**</code> in the distance formula, comparison and arithmetic operators</td><td>§08</td></tr>
+            <tr><th>Strings and String Methods</th><td>Template literals, <code>replace</code>, <code>split</code>, <code>includes</code>, <code>toLowerCase</code>, <code>padStart</code>, <code>trim</code>, <code>startsWith</code></td><td><code>repo-index.js</code></td></tr>
+            <tr><th>Numbers and Boolean Values</th><td><code>Math.round</code>/<code>sin</code>/<code>cos</code>/<code>asin</code>, <code>toFixed</code>, <code>Number.isInteger</code>, <code>Intl.NumberFormat</code>, Boolean flags (<code>loaded</code>, <code>reverse</code>)</td><td><code>desk.js</code></td></tr>
+            <tr><th>Conditional Statements</th><td><code>if/else</code>, <code>switch</code> (filters, arrow keys), ternary operators</td><td>§08</td></tr>
+            <tr><th>Functions</th><td>Function declarations, arrow functions, async functions, default parameters, rest parameters, functions returning functions</td><td>§08</td></tr>
+            <tr><th>Scope</th><td>Module scope keeps helpers private. Block scope with <code>let</code>/<code>const</code>. Closures in <code>debounce</code>, <code>cache</code> and <code>wrap</code>.</td><td>§08</td></tr>
+            <tr><th>Arrays and Array Operations</th><td><code>map</code>, <code>filter</code>, <code>reduce</code>, <code>sort</code>, <code>find</code>, <code>findIndex</code>, <code>some</code>, <code>every</code>, <code>splice</code>, <code>slice</code>, <code>includes</code>, <code>Array.from</code></td><td>§08</td></tr>
+            <tr><th>Objects and Object Manipulation</th><td>The <code>state</code> object, destructuring, spread to merge saved settings, <code>Object.entries</code>/<code>fromEntries</code>, a lookup object of sort functions</td><td>§08</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="chapter">
+    <h3 style="margin-top:0">Unit V: Interactive Web Development</h3>
+    <table class="t-topics">
+        <thead><tr><th>Topic</th><th>How Portfolio2 uses it</th><th>Proof</th></tr></thead>
+        <tbody>
+            <tr><th>Loops and Iterative Programming</th><td><code>for...of</code> in <code>timeAgo</code>, <code>forEach</code> over results, iterating a <code>Map</code> to build menu options</td><td>§08</td></tr>
+            <tr><th>Higher Order Functions</th><td>A filter → filter → filter → sort pipeline, <code>debounce</code> (takes and returns a function), <code>guard</code> (runs a function safely)</td><td>§08</td></tr>
+            <tr><th>Callback Functions</th><td>Event listener callbacks, sort comparators, the Geolocation callbacks wrapped in a Promise, the <code>replace</code> callback in the query parser</td><td>§08</td></tr>
+            <tr><th>DOM Fundamentals</th><td>The page is read and changed through the DOM tree. The <code>&lt;template&gt;</code> content is cloned for each card.</td><td>§08</td></tr>
+            <tr><th>DOM Selection and Manipulation</th><td><code>querySelector(All)</code> helpers, <code>closest</code>, <code>classList</code>, <code>dataset</code>, <code>setAttribute</code>, <code>replaceChildren</code>, <code>insertRow</code>/<code>insertCell</code>, <code>DocumentFragment</code></td><td>Figs 8, 16</td></tr>
+            <tr><th>Event Handling</th><td>click, input, change, submit, keydown, focusout, dragstart/dragover/dragleave/drop/dragend, media events. Event delegation on lists.</td><td>§08</td></tr>
+            <tr><th>Dynamic Content Generation</th><td>Cards, table rows, pins, the language menu, totals and the SVG bar are all built from data at runtime</td><td>Figs 8, 9</td></tr>
+            <tr><th>JavaScript Accessibility Practices</th><td>Focus goes back to the button after re-render and moves to the first invalid field on submit. Live-region messages. Arrow and Delete keys for pins.</td><td>Figs 27, 28</td></tr>
+            <tr><th>Form Validation</th><td>A <code>RULES</code> object of validator functions. Errors show after leaving a field, then update live while typing.</td><td>Figs 28, 26</td></tr>
+            <tr><th>Regular Expressions</th><td>Name and email patterns, link counting, the search-filter parser with capture groups, the number-range rule, the GMT offset parser</td><td>Figs 11, 12</td></tr>
+            <tr><th>Date and Time Handling</th><td><code>Date</code>, <code>Intl.DateTimeFormat</code> with time zones, <code>Intl.RelativeTimeFormat</code> ("3 days ago"), a clock that ticks on the second</td><td>Figs 13, 20</td></tr>
+            <tr><th>Audio and Video Events</th><td>Voice note: <code>loadedmetadata</code>, <code>timeupdate</code>, <code>play</code>, <code>pause</code>, <code>ended</code>, <code>error</code>. Menu videos: <code>playing</code>, <code>waiting</code>.</td><td>§08</td></tr>
+            <tr><th>Browser Storage using Web Storage API</th><td>localStorage: pins, view settings, form draft. sessionStorage: 30-minute API cache with an expiry check.</td><td>Figs 27, 19</td></tr>
+            <tr><th>Fetch API and JSON Processing</th><td><code>fetch</code> + <code>res.json()</code>, a <code>res.ok</code> check, an <code>AbortController</code> timeout, fallback to a local JSON file</td><td>Figs 8, 29</td></tr>
+            <tr><th>Geolocation API</th><td><code>getCurrentPosition</code> on click only, with timeout and maxAge options, every error code handled, haversine distance</td><td>Fig 20</td></tr>
+            <tr><th>Drag and Drop API</th><td><code>draggable</code> cards and chips, <code>dataTransfer</code>, a drop position worked out from the pointer, dragging a chip off the shelf unpins it</td><td>Figs 27, 15</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Unit VI: Web Application Development and Deployment</h3>
+    <table class="t-topics">
+        <thead><tr><th>Topic</th><th>How Portfolio2 uses it</th><th>Proof</th></tr></thead>
+        <tbody>
+            <tr><th>Debugging Techniques</th><td>Add <code>?debug</code> to the URL to see timings, a <code>console.table</code> of repos and warnings with stack traces</td><td>§09</td></tr>
+            <tr><th>Browser Developer Tools</th><td>Network panel (offline and throttled tests, 403 responses), Application panel (storage keys), Console, device mode for phones</td><td>§09</td></tr>
+            <tr><th>Error Handling</th><td>try/catch/finally, errors carrying extra data (<code>rateLimited</code>), a three-step fallback, a retry button, global <code>error</code> and <code>unhandledrejection</code> listeners</td><td>Figs 29, 30</td></tr>
+            <tr><th>Interactive User Interface Development</th><td>Search as you type, toggles, sorting, drag and drop, live clocks, inline validation</td><td>§04</td></tr>
+            <tr><th>Client-Side Application Design</th><td>One <code>state</code> object, pure helpers (<code>parseQuery</code>, <code>normalize</code>), and render functions that rebuild the view from state</td><td>§08</td></tr>
+            <tr><th>Code Organization</th><td>ES modules: an entry file, three feature modules and three shared helper modules</td><td>§02</td></tr>
+            <tr><th>Website Performance Fundamentals</th><td>The API is called only when the section comes near (IntersectionObserver). Debounced search, batched DOM updates, preconnect, lazy iframe and images, session cache.</td><td>§08</td></tr>
+            <tr><th>GitHub Repository Management</th><td>Public repository, small focused commits with clear messages, README with setup and structure, description and website link set</td><td>Figs 31, 32</td></tr>
+            <tr><th>Website Hosting using GitHub Pages</th><td>Deployed from the <code>main</code> branch root. Every push redeploys automatically.</td><td>§10</td></tr>
+            <tr><th>Web Development Best Practices</th><td>Escaping data before inserting HTML, no secrets in code, graceful failure, accessibility, reduced motion, consistent code style</td><td>§08</td></tr>
+            <tr><th>Improving Web Applications using GitHub Copilot</th><td>Used Copilot suggestions to review code and spot edge cases, then checked every change myself in DevTools</td><td>§09</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- ============ 07 PRACTICALS ============ -->
+<section class="chapter">
+    <p class="kicker">07 · List of practicals</p>
+    <h2>All 10 lab experiments, inside one project</h2>
+    <p class="lead">Each experiment from the CSE326 practical list is part of a working feature. Here's where to find each one.</p>
+
+    <div class="prac"><h4><span>P1</span>Design a user registration form using HTML input controls and apply CSS selectors, the box model, and focus styles</h4>
+        <div class="grid2"><p>The contact form uses text, email, select and textarea controls with labels. CSS selectors target <code>.field</code>, <code>.has-error</code> and <code>:focus</code>. The box model shows in the padding and bottom borders. Focus turns the border orange, and buttons get a <code>:focus-visible</code> outline.</p><figure class="fig-short"><img src="images/22-form-valid.png" alt=""><figcaption><b>Fig. 26</b> · Contact form with focus and valid states.</figcaption></figure></div></div>
+
+    <div class="prac"><h4><span>P2</span>Create a web page that includes text formatting, lists, hyperlinks, images, SVG graphics, audio, video, and an iframe using HTML5 elements</h4>
+        <p>All on <code>index.html</code>: formatting (<code>strong</code>, <code>em</code>, <code>kbd</code>, <code>code</code>), lists (<code>ol</code>, <code>ul</code>, <code>dl</code>), links and images throughout, SVG (heatmap, icons, language bar), <code>&lt;video&gt;</code> in the menu, <code>&lt;audio&gt;</code> voice note and an OpenStreetMap <code>&lt;iframe&gt;</code> (Fig 20).</p></div>
+
+    <div class="prac"><h4><span>P3</span>Build a responsive web page using Flexbox for navigation, CSS Grid for content layout, and media queries for different screen sizes</h4>
+        <p>The top navigation is a Grid bar with Flexbox link groups. The repo cards use a CSS Grid that fills the width. Media queries reshape the controls at 980, 760 and 480 px, and a container query restacks the table (Figs 8, 22 to 25).</p></div>
+
+    <div class="prac"><h4><span>P4</span>Design a responsive webpage using CSS variables, pseudo-classes, pseudo-elements, transitions, and animations to enhance user interaction</h4>
+        <p>The variables <code>--ink</code>, <code>--paper</code>, <code>--accent</code> and the per-card <code>--lang</code>. Pseudo-classes such as <code>:has()</code>, <code>:checked</code> and <code>:focus-visible</code>. Pseudo-elements for dots, numbers and arrows. The card lift and colour-bar transitions, plus the shimmer and shake keyframes (Fig 13; CSS in §08).</p></div>
+
+    <div class="prac"><h4><span>P5</span>Write JavaScript programs demonstrating variables, constants, data types, operators, expressions, and control flow statements</h4>
+        <p><code>parseQuery</code> and <code>starsRule</code> use constants, regex, string and number types, comparison operators, a <code>switch</code> and ternaries. <code>moodAt</code> in <code>desk.js</code> is a clear <code>if</code> chain. See §08.</p></div>
+
+    <div class="prac"><h4><span>P6</span>Implement JavaScript functions (normal and arrow functions) and perform operations on arrays and objects</h4>
+        <p>Normal functions: <code>parseQuery</code>, <code>offsetMinutes</code>, <code>distanceKm</code>. Arrow functions: <code>normalize</code>, <code>debounce</code>, the sort lookup <code>SORTS</code>. Arrays: the filter/sort pipeline in <code>visibleRepos</code>. Objects: <code>state</code>, destructuring, spread (§08).</p></div>
+
+    <div class="prac"><h4><span>P7</span>Handle user events such as clicks, keyboard input, and form changes to dynamically update web page content using JavaScript and DOM manipulation</h4>
+        <div class="grid2"><p>Clicks: Pin buttons, table headers, the view switch. Keyboard: <code>/</code> to search, <code>Esc</code> to clear, arrow keys and Delete on pins. Form changes: language, sort and fork filters re-render the list straight away.</p><figure class=""><img src="images/15-shelf-pins.png" alt=""><figcaption><b>Fig. 27</b> · Pins added by click, drag and keyboard.</figcaption></figure></div></div>
+
+    <div class="prac"><h4><span>P8</span>Develop a form validation system using JavaScript and regular expressions to validate user input before form submission</h4>
+        <div class="grid2"><p>The <code>RULES</code> object in <code>contact-form.js</code> has a regex or rule for each field. <code>check()</code> sets <code>aria-invalid</code> and the message. Submit is blocked until every field passes (Figs 28, 26).</p><figure class="fig-short"><img src="images/21-form-errors.png" alt=""><figcaption><b>Fig. 28</b> · Validation blocking the submit.</figcaption></figure></div></div>
+
+    <div class="prac"><h4><span>P9</span>Demonstrate JavaScript execution context, scope, closures, loops, callback functions, and higher-order functions using suitable examples</h4>
+        <p><code>debounce</code> keeps <code>timer</code> in a closure. <code>cache(key, ttl)</code> returns functions that remember their key. Module scope hides helpers. <code>for...of</code> in <code>timeAgo</code>. The callback-based Geolocation API is wrapped in a Promise in <code>locate</code>. Array pipelines are higher-order functions (§08).</p></div>
+
+    <div class="prac"><h4><span>P10</span>Create an HTML5 web page using semantic elements and basic CSS for layout and typography</h4>
+        <p>The whole site: <code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>aside</code>, <code>footer</code>, with Inter and a monospace font for typography (Section 03).</p></div>
+</section>
+
+<!-- ============ 08 CODE ============ -->
+<section class="chapter">
+    <p class="kicker">08 · Code walkthrough</p>
+    <h2>The important code, explained</h2>
+    <p class="lead">Short extracts from the real source files, each with what it does and which syllabus topics it shows.</p>
+
+    <h3>1. Fetching with a timeout and a fallback</h3>
+    <div class="walk">
+        <pre><span class="file">repo-index.js · lines 65–79</span>async function fetchJSON(url, timeout = 8000) {
+    const controller = new AbortController();
+    const timer = setTimeout(() =&gt; controller.abort(), timeout);
+    try {
+        const res = await fetch(url, { signal: controller.signal });
+        if (!res.ok) {
+            const err = new Error(`${res.status} ${res.statusText} for ${url}`);
+            err.rateLimited = res.status === 403 &amp;&amp; res.headers.get(&#x27;x-ratelimit-remaining&#x27;) === &#x27;0&#x27;;
+            throw err;
+        }
+        return await res.json();
+    } finally {
+        clearTimeout(timer);
+    }
+}</pre>
+        <div><p><code>fetchJSON</code> wraps <code>fetch</code>. An <code>AbortController</code> cancels the request after 8 seconds. A non-OK response becomes an <code>Error</code> carrying a <code>rateLimited</code> flag, read from GitHub's rate-limit header.</p>
+        <p><code>finally</code> clears the timer whether the request worked or not.</p>
+        <p class="tags"><span class="tag">Fetch API</span><span class="tag">JSON</span><span class="tag">async/await</span><span class="tag">Error handling</span></p></div>
+    </div>
+    <div class="walk">
+        <pre><span class="file">repo-index.js · lines 82–100</span>async function loadRepos({ fresh = false } = {}) {
+    const cached = fresh ? null : repoCache.read();
+    if (cached) return { repos: cached, source: &#x27;cache&#x27; };
+
+    try {
+        const live = (await fetchJSON(API)).map(trim);
+        repoCache.write(live);
+        return { repos: live, source: &#x27;live&#x27; };
+    } catch (err) {
+        debug.warn(&#x27;GitHub API unavailable, falling back to the snapshot.&#x27;, err);
+        const snapshot = await fetchJSON(SNAPSHOT);
+        return {
+            repos: snapshot.repos,
+            source: &#x27;snapshot&#x27;,
+            savedAt: new Date(snapshot.savedAt),
+            reason: err.rateLimited ? &#x27;rate-limit&#x27; : err.name === &#x27;AbortError&#x27; ? &#x27;timeout&#x27; : &#x27;offline&#x27;
+        };
+    }
+}</pre>
+        <div><p>Three steps: the session cache first, then the live API, then the copy committed with the site. The result says which one was used, so the page can tell the visitor honestly (Fig 29).</p>
+        <p class="tags"><span class="tag">Client-server</span><span class="tag">sessionStorage</span><span class="tag">try/catch</span></p></div>
+    </div>
+
+    <h3>2. Parsing search filters with regular expressions</h3>
+    <div class="walk">
+        <pre><span class="file">repo-index.js · lines 104–107</span>// Plain words plus a few GitHub-style qualifiers:
+//   lang:python  topic:ml  stars:&gt;2  stars:1..5  is:fork  is:source
+const QUALIFIER = /\b(lang|language|topic|stars|is):(&quot;[^&quot;]*&quot;|\S+)/gi;
+const NUMBER_RULE = /^(?:(&gt;=|&lt;=|&gt;|&lt;)?(\d+)|(\d+)\.\.(\d+))$/;</pre>
+        <div><p><code>QUALIFIER</code> finds every <code>key:value</code> pair. Group 1 is the key, and group 2 is the value (a quoted phrase or a single word). The <code>g</code> and <code>i</code> flags match all of them, in any case.</p>
+        <p><code>NUMBER_RULE</code> accepts <code>5</code>, <code>&gt;2</code>, <code>&lt;=10</code> or a range <code>1..5</code>.</p></div>
+    </div>
+    <div class="walk">
+        <pre><span class="file">repo-index.js · lines 124–159</span>export function parseQuery(input) {
+    const tests = [];
+    const problems = [];
+    let forkMode = null;
+
+    const rest = input.replace(QUALIFIER, (token, key, raw) =&gt; {
+        const value = raw.replace(/&quot;/g, &#x27;&#x27;).toLowerCase();
+        switch (key.toLowerCase()) {
+            case &#x27;lang&#x27;:
+            case &#x27;language&#x27;:
+                tests.push(repo =&gt; (repo.language ?? &#x27;other&#x27;).toLowerCase() === value);
+                break;
+            case &#x27;topic&#x27;:
+                tests.push(repo =&gt; repo.topics.some(topic =&gt; topic.includes(value)));
+                break;
+            case &#x27;stars&#x27;: {
+                const rule = starsRule(value);
+                if (rule) tests.push(repo =&gt; rule(repo.stars));
+                else problems.push(token);
+                break;
+            }
+            case &#x27;is&#x27;:
+                if (value === &#x27;fork&#x27;) forkMode = &#x27;fork&#x27;;
+                else if (value === &#x27;source&#x27;) forkMode = &#x27;source&#x27;;
+                else problems.push(token);
+                break;
+        }
+        return &#x27; &#x27;;
+    });
+
+    rest.toLowerCase().split(/\s+/).filter(Boolean).forEach(word =&gt; {
+        tests.push(repo =&gt; `${repo.name} ${repo.description} ${repo.topics.join(&#x27; &#x27;)}`.toLowerCase().includes(word));
+    });
+
+    return { tests, problems, forkMode };
+}</pre>
+        <div><p><code>replace</code> with a callback visits every filter. A <code>switch</code> turns each one into a test function, and anything it can't read goes into <code>problems</code> (Fig 12). Whatever text is left becomes plain-word searches.</p>
+        <p class="tags"><span class="tag">Regular expressions</span><span class="tag">switch</span><span class="tag">Callbacks</span><span class="tag">Strings</span></p></div>
+    </div>
+</section>
+
+<section class="chapter">
+    <h3 style="margin-top:0">3. Higher-order functions: filter, sort and reduce</h3>
+    <div class="walk">
+        <pre><span class="file">repo-index.js · lines 208–217</span>function visibleRepos() {
+    const { tests, problems, forkMode } = parseQuery(state.query);
+    const compare = SORTS[state.sort];
+    const list = state.repos
+        .filter(repo =&gt; forkMode === &#x27;fork&#x27; ? repo.fork : forkMode === &#x27;source&#x27; ? !repo.fork : state.forks || !repo.fork)
+        .filter(repo =&gt; state.language === &#x27;all&#x27; || (repo.language ?? &#x27;Other&#x27;) === state.language)
+        .filter(repo =&gt; tests.every(test =&gt; test(repo)))
+        .sort((a, b) =&gt; state.reverse ? compare(b, a) : compare(a, b));
+    return { list, problems };
+}</pre>
+        <div><p>Every visible list is computed from <code>state</code>. Three <code>filter</code> calls handle the forks switch, the language menu and the search tests. <code>sort</code> uses a comparator from the <code>SORTS</code> lookup object, reversed when a table header is clicked twice.</p>
+        <p class="tags"><span class="tag">Arrays</span><span class="tag">Higher-order functions</span><span class="tag">Destructuring</span></p></div>
+    </div>
+
+    <h3>4. Drag and Drop</h3>
+    <div class="walk">
+        <pre><span class="file">repo-index.js · lines 542–550</span>section.addEventListener(&#x27;dragstart&#x27;, e =&gt; {
+    const item = e.target.closest?.(&#x27;.repo-card, .repo-chip&#x27;);
+    if (!item) return;
+    dragging = { name: item.dataset.name, from: item.classList.contains(&#x27;repo-chip&#x27;) ? &#x27;shelf&#x27; : &#x27;list&#x27; };
+    e.dataTransfer.effectAllowed = &#x27;move&#x27;;
+    e.dataTransfer.setData(&#x27;text/plain&#x27;, dragging.name);
+    requestAnimationFrame(() =&gt; item.classList.add(&#x27;is-dragging&#x27;));
+    section.classList.add(&#x27;is-dragging&#x27;);
+});</pre>
+        <div><p>One listener on the whole section handles every card and chip (event delegation). It remembers what is being dragged and where from, puts the name in <code>dataTransfer</code>, and adds CSS classes for the visual feedback in Fig 15.</p></div>
+    </div>
+    <div class="walk">
+        <pre><span class="file">repo-index.js · lines 572–577</span>el.shelf.addEventListener(&#x27;drop&#x27;, e =&gt; {
+    e.preventDefault();
+    const name = e.dataTransfer.getData(&#x27;text/plain&#x27;) || dragging?.name;
+    if (name) pinAt(name, dropIndex(e.clientX, e.clientY));
+    clearMarkers();
+});</pre>
+        <div><p>On drop, <code>dropIndex</code> works out where the pointer is between chips, and <code>pinAt</code> inserts the repo there and saves the order to <code>localStorage</code>.</p>
+        <p class="tags"><span class="tag">Drag and Drop API</span><span class="tag">Events</span><span class="tag">localStorage</span></p></div>
+    </div>
+
+    <h3>5. Web Storage with closures</h3>
+    <div class="walk">
+        <pre><span class="file">storage.js · lines 5–31</span>const wrap = (name) =&gt; {
+    const area = () =&gt; window[name];
+    return {
+        get(key, fallback = null) {
+            try {
+                const raw = area().getItem(key);
+                return raw === null ? fallback : JSON.parse(raw);
+            } catch {
+                return fallback;
+            }
+        },
+        set(key, value) {
+            try {
+                area().setItem(key, JSON.stringify(value));
+                return true;
+            } catch {
+                return false;
+            }
+        },
+        remove(key) {
+            try { area().removeItem(key); } catch { /* nothing to clean up */ }
+        }
+    };
+};
+
+export const local = wrap(&#x27;localStorage&#x27;);
+export const session = wrap(&#x27;sessionStorage&#x27;);</pre>
+        <div><p>Storage can throw (private browsing, blocked cookies), so every call is wrapped and fails soft. <code>wrap</code> is a factory: each object it returns remembers its storage <code>name</code> in a closure. Values go through <code>JSON.stringify</code>/<code>parse</code>.</p>
+        <p class="tags"><span class="tag">Web Storage</span><span class="tag">Closures</span><span class="tag">JSON</span></p></div>
+    </div>
+    <div class="walk">
+        <pre><span class="file">utils.js · lines 6–12</span>export const debounce = (fn, wait = 200) =&gt; {
+    let timer;
+    return (...args) =&gt; {
+        clearTimeout(timer);
+        timer = setTimeout(() =&gt; fn(...args), wait);
+    };
+};</pre>
+        <div><p><code>debounce</code> returns a new function that waits until typing stops. <code>timer</code> lives in the closure, so each debounced function has its own. It's used for search (160 ms) and the draft autosave (400 ms).</p>
+        <p class="tags"><span class="tag">Scope</span><span class="tag">Closures</span><span class="tag">Higher-order</span></p></div>
+    </div>
+</section>
+
+<section class="chapter">
+    <h3 style="margin-top:0">6. Form validation rules</h3>
+    <div class="walk">
+        <pre><span class="file">contact-form.js · lines 10–36</span>const NAME_RE = /^\p{L}[\p{L}\p{M} .&#x27;-]{1,59}$/u;
+// Deliberately loose: something@something.tld, no spaces. The mail app does the real check.
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+const LINK_RE = /https?:\/\/\S+/gi;
+
+const RULES = {
+    user_name(value) {
+        if (!value) return &#x27;Tell me what to call you.&#x27;;
+        if (value.length &lt; 2) return &#x27;That looks a little short for a name.&#x27;;
+        if (!NAME_RE.test(value)) return &#x27;Letters, spaces, dots and hyphens only.&#x27;;
+        return &#x27;&#x27;;
+    },
+    user_email(value) {
+        if (!value) return &#x27;I need an email to reply to.&#x27;;
+        if (!EMAIL_RE.test(value)) return &#x27;That email doesn\&#x27;t look complete. Something like you@example.com.&#x27;;
+        return &#x27;&#x27;;
+    },
+    reason(value) {
+        return value ? &#x27;&#x27; : &#x27;Pick the closest one, it helps me reply faster.&#x27;;
+    },
+    message(value) {
+        if (value.length &lt; 20) return `A little more, please. At least 20 characters (${20 - value.length} to go).`;
+        if (value.length &gt; MESSAGE_MAX) return `Keep it under ${MESSAGE_MAX} characters.`;
+        if ((value.match(LINK_RE) ?? []).length &gt; 2) return &#x27;Two links at most. Anything more and it reads like spam.&#x27;;
+        return &#x27;&#x27;;
+    }
+};</pre>
+        <div><p>Each field has a function that returns an error message, or an empty string when the value is fine. <code>\p{L}</code> with the <code>u</code> flag accepts letters from any language, so names like "Zoë" or Hindi names pass.</p>
+        <p class="tags"><span class="tag">Regex</span><span class="tag">Form validation</span><span class="tag">Objects</span></p></div>
+    </div>
+    <div class="walk">
+        <pre><span class="file">contact-form.js · lines 48–55</span>function check(field) {
+    const message = RULES[field.name](valueOf(field));
+    const error = document.getElementById(field.getAttribute(&#x27;aria-describedby&#x27;)?.split(&#x27; &#x27;)[0]);
+    field.setAttribute(&#x27;aria-invalid&#x27;, String(Boolean(message)));
+    field.closest(&#x27;.field&#x27;)?.classList.toggle(&#x27;has-error&#x27;, Boolean(message));
+    if (error) error.textContent = message;
+    return !message;
+}</pre>
+        <div><p>Shows or clears the message and marks the field with <code>aria-invalid</code>, so screen readers announce it. The error element is found through the field's <code>aria-describedby</code>.</p>
+        <p class="tags"><span class="tag">DOM</span><span class="tag">Accessibility</span></p></div>
+    </div>
+
+    <h3>7. Dates, time zones, Geolocation and audio</h3>
+    <div class="walk">
+        <pre><span class="file">desk.js · lines 11–18</span>const OFFSET_RE = /GMT(?:([+-])(\d{1,2})(?::(\d{2}))?)?/;
+function offsetMinutes(timeZone, date = new Date()) {
+    const name = new Intl.DateTimeFormat(&#x27;en-US&#x27;, { timeZone, timeZoneName: &#x27;shortOffset&#x27; })
+        .formatToParts(date)
+        .find(part =&gt; part.type === &#x27;timeZoneName&#x27;)?.value ?? &#x27;GMT&#x27;;
+    const [, sign = &#x27;+&#x27;, hours = 0, minutes = 0] = name.match(OFFSET_RE) ?? [];
+    return (sign === &#x27;-&#x27; ? -1 : 1) * (Number(hours) * 60 + Number(minutes));
+}</pre>
+        <div><p><code>Intl</code> formats the time-zone name as "GMT+5:30". The regex pulls out the sign, hours and minutes, and the function returns minutes east of UTC. The difference between two zones gives "I'm 4.5 hours ahead of you".</p>
+        <p class="tags"><span class="tag">Date and time</span><span class="tag">Regex</span><span class="tag">Destructuring</span></p></div>
+    </div>
+    <div class="walk">
+        <pre><span class="file">desk.js · lines 35–42</span>// Great-circle distance in km (haversine)
+function distanceKm(a, b) {
+    const rad = (deg) =&gt; (deg * Math.PI) / 180;
+    const dLat = rad(b.lat - a.lat);
+    const dLon = rad(b.lon - a.lon);
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLon / 2) ** 2;
+    return 2 * 6371 * Math.asin(Math.sqrt(h));
+}</pre>
+        <div><pre><span class="file">desk.js · lines 44–50</span>const locate = (options) =&gt; new Promise((resolve, reject) =&gt; {
+    if (!(&#x27;geolocation&#x27; in navigator)) {
+        reject(Object.assign(new Error(&#x27;unsupported&#x27;), { code: 0 }));
+        return;
+    }
+    navigator.geolocation.getCurrentPosition(resolve, reject, options);
+});</pre>
+        <p><code>locate</code> turns the callback-style Geolocation API into a Promise, so it can be <code>await</code>ed. <code>distanceKm</code> is the haversine formula, using <code>Math</code> and the <code>**</code> operator.</p></div>
+    </div>
+    <div class="walk">
+        <pre><span class="file">desk.js · lines 123–145</span>audio.addEventListener(&#x27;loadedmetadata&#x27;, () =&gt; {
+    player.hidden = false;
+    seek.max = audio.duration;
+    time.textContent = format(audio.duration);
+});
+audio.lastElementChild?.addEventListener(&#x27;error&#x27;, () =&gt; { player.hidden = true; });
+
+audio.addEventListener(&#x27;timeupdate&#x27;, () =&gt; {
+    seek.value = audio.currentTime;
+    seek.style.setProperty(&#x27;--progress&#x27;, `${(audio.currentTime / audio.duration) * 100 || 0}%`);
+    time.textContent = format(audio.duration - audio.currentTime);
+});
+audio.addEventListener(&#x27;play&#x27;, () =&gt; setPlaying(true));
+audio.addEventListener(&#x27;pause&#x27;, () =&gt; setPlaying(false));
+audio.addEventListener(&#x27;ended&#x27;, () =&gt; {
+    audio.currentTime = 0;
+    time.textContent = format(audio.duration);
+});
+
+toggle.addEventListener(&#x27;click&#x27;, () =&gt; {
+    audio.paused ? audio.play().catch(() =&gt; setPlaying(false)) : audio.pause();
+});
+seek.addEventListener(&#x27;input&#x27;, () =&gt; { audio.currentTime = Number(seek.value); });</pre>
+        <div><p>The player is built entirely on media events. <code>loadedmetadata</code> shows it and sets the length, <code>timeupdate</code> moves the seek bar through a CSS variable, and <code>play</code>/<code>pause</code>/<code>ended</code> switch the button.</p>
+        <p class="tags"><span class="tag">Audio events</span><span class="tag">CSS variables from JS</span></p></div>
+    </div>
+</section>
+
+<section class="chapter">
+    <h3 style="margin-top:0">8. Organisation, performance and safety</h3>
+    <div class="walk">
+        <pre><span class="file">app.js · lines 14–26</span>const repoSection = document.getElementById(&#x27;repos&#x27;);
+if (repoSection) {
+    debug.guard(&#x27;repo-index&#x27;, () =&gt; {
+        const index = initRepoIndex(repoSection);
+        // Don&#x27;t spend one of GitHub&#x27;s 60 hourly requests until the section is close
+        const watcher = new IntersectionObserver(entries =&gt; {
+            if (!entries.some(entry =&gt; entry.isIntersecting)) return;
+            watcher.disconnect();
+            index.load();
+        }, { rootMargin: &#x27;600px 0px&#x27; });
+        watcher.observe(repoSection);
+    });
+}</pre>
+        <div><p>The entry module starts each feature through <code>guard</code>, so a crash in one feature is logged and the rest keep working. The repo index waits for an <code>IntersectionObserver</code>, which saves GitHub's 60 requests per hour for visitors who actually scroll there.</p>
+        <pre><span class="file">debug.js · lines 27–35</span>export const guard = (name, init) =&gt; {
+    try {
+        time(name);
+        init();
+        time(name, true);
+    } catch (err) {
+        warn(`${name} failed to start`, err);
+    }
+};</pre></div>
+    </div>
+
+    <h3>9. HTML: SEO, table and template</h3>
+    <div class="walk">
+        <pre><span class="file">index.html · lines 7–17</span>&lt;meta name=&quot;description&quot; content=&quot;Lukshya Supyal, B.Tech CSE student at Lovely Professional University. I build machine learning models and Python tools, and fix bugs in the open-source libraries I use.&quot;&gt;
+&lt;meta name=&quot;author&quot; content=&quot;Lukshya Supyal&quot;&gt;
+&lt;meta name=&quot;theme-color&quot; content=&quot;#0a0a0a&quot;&gt;
+&lt;link rel=&quot;canonical&quot; href=&quot;https://lushadowx.github.io/portfolio2/&quot;&gt;
+&lt;link rel=&quot;icon&quot; href=&quot;assets/images/favicon.svg&quot; type=&quot;image/svg+xml&quot;&gt;
+
+&lt;meta property=&quot;og:type&quot; content=&quot;website&quot;&gt;
+&lt;meta property=&quot;og:site_name&quot; content=&quot;Lukshya Supyal&quot;&gt;
+&lt;meta property=&quot;og:title&quot; content=&quot;Lukshya Supyal | Ideas into reality&quot;&gt;
+&lt;meta property=&quot;og:description&quot; content=&quot;Machine learning, Python tools and open-source fixes. Projects, certificates and everything I&#x27;ve pushed to GitHub.&quot;&gt;
+&lt;meta property=&quot;og:url&quot; content=&quot;https://lushadowx.github.io/portfolio2/&quot;&gt;</pre>
+        <div><p>The meta description and canonical URL tell search engines what the page is and where it lives. Open Graph tags control the preview card when the link is shared.</p>
+        <pre><span class="file">index.html · lines 321–330</span>&lt;table class=&quot;repo-table&quot; id=&quot;repo-table&quot; hidden&gt;
+    &lt;caption class=&quot;sr-only&quot;&gt;My GitHub repositories. Column headers sort the table.&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope=&quot;col&quot; data-sort=&quot;name&quot; aria-sort=&quot;none&quot;&gt;&lt;button type=&quot;button&quot;&gt;Name&lt;/button&gt;&lt;/th&gt;
+            &lt;th scope=&quot;col&quot; data-sort=&quot;language&quot; aria-sort=&quot;none&quot;&gt;&lt;button type=&quot;button&quot;&gt;Language&lt;/button&gt;&lt;/th&gt;
+            &lt;th scope=&quot;col&quot; data-sort=&quot;stars&quot; aria-sort=&quot;none&quot;&gt;&lt;button type=&quot;button&quot;&gt;Stars&lt;/button&gt;&lt;/th&gt;
+            &lt;th scope=&quot;col&quot; data-sort=&quot;pushed&quot; aria-sort=&quot;none&quot;&gt;&lt;button type=&quot;button&quot;&gt;Updated&lt;/button&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;</pre></div>
+    </div>
+    <div class="walk">
+        <pre><span class="file">index.html · lines 335–345</span>&lt;template id=&quot;repo-card-tpl&quot;&gt;
+    &lt;li class=&quot;repo-card&quot; draggable=&quot;true&quot;&gt;
+        &lt;article&gt;
+            &lt;p class=&quot;repo-card__meta&quot;&gt;&lt;span class=&quot;repo-card__lang&quot;&gt;&lt;/span&gt;&lt;span class=&quot;repo-card__stars&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;h3 class=&quot;repo-card__name&quot;&gt;&lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;/a&gt;&lt;/h3&gt;
+            &lt;p class=&quot;repo-card__desc&quot;&gt;&lt;/p&gt;
+            &lt;ul class=&quot;repo-card__topics&quot; aria-label=&quot;Topics&quot;&gt;&lt;/ul&gt;
+            &lt;footer class=&quot;repo-card__foot&quot;&gt;&lt;time&gt;&lt;/time&gt;&lt;button type=&quot;button&quot; class=&quot;repo-pin&quot; aria-pressed=&quot;false&quot;&gt;Pin&lt;/button&gt;&lt;/footer&gt;
+        &lt;/article&gt;
+    &lt;/li&gt;
+&lt;/template&gt;</pre>
+        <div><p>A <code>&lt;template&gt;</code> isn't rendered. JavaScript clones it for each repository and fills in the text with <code>textContent</code>, which never runs code, so a description with HTML in it can't inject anything.</p>
+        <p class="tags"><span class="tag">HTML5</span><span class="tag">DOM</span><span class="tag">Security</span></p></div>
+    </div>
+
+    <h3>10. CSS: variables, container query, custom controls, animation</h3>
+    <div class="walk">
+        <pre><span class="file">repo-index.css · lines 6–21</span>.repo-index {
+    --ink: #11110f;
+    --paper: #f2f0e9;
+    --card: #f8f6f1;
+    --muted: #6e6a61;
+    --faint: #8e897e;
+    --line: #11110f24;
+    --line-dark: var(--line);
+    --accent: #c15f3c;
+    --danger: #a33a1c;
+    --mono: &#x27;SFMono-Regular&#x27;, Consolas, &#x27;Liberation Mono&#x27;, monospace;
+    position: relative; z-index: 10; padding: 120px 0 56px;
+    background: var(--paper); color: var(--ink);
+    font-family: &#x27;Inter&#x27;, ui-sans-serif, -apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}</pre>
+        <pre><span class="file">repo-index.css · lines 235–242</span>@container (max-width: 560px) {
+    .repo-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .repo-table tr { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .repo-table th, .repo-table td { padding: 0; border: 0; }
+    .repo-table tbody th { grid-column: 1 / -1; }
+    .repo-table td[data-label=&quot;Stars&quot;]::before { content: &#x27;\2605\00a0&#x27;; color: var(--faint); }
+    .repo-table td[data-label=&quot;Updated&quot;] { grid-column: 1 / -1; font-size: 12px; }
+}</pre>
+    </div>
+    <div class="walk">
+        <pre><span class="file">repo-index.css · lines 71–83</span>/* switch-style checkbox */
+.repo-check { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; cursor: pointer; white-space: nowrap; }
+.repo-controls .repo-check &gt; span { margin: 0; color: var(--ink); font: 600 13px/1 &#x27;Inter&#x27;, sans-serif; letter-spacing: 0; text-transform: none; }
+.repo-check input {
+    position: relative; flex: none; width: 34px; height: 20px; margin: 0; cursor: pointer; appearance: none;
+    background: #11110f26; border-radius: 99px; transition: background-color 0.2s;
+}
+.repo-check input::before {
+    content: &#x27;&#x27;; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%;
+    background: #fff; box-shadow: 0 1px 2px #11110f40; transition: transform 0.25s var(--ease-out-expo);
+}
+.repo-check input:checked { background: var(--ink); }
+.repo-check input:checked::before { transform: translateX(14px); }</pre>
+        <pre><span class="file">repo-index.css · lines 204–209</span>.repo-card--ghost {
+    height: 196px; border-radius: 14px;
+    background: linear-gradient(100deg, #11110f0a 30%, #11110f17 50%, #11110f0a 70%) 0 0 / 300% 100%;
+    animation: repo-shimmer 1.3s linear infinite;
+}
+@keyframes repo-shimmer { from { background-position: 100% 0; } to { background-position: 0 0; } }</pre>
+    </div>
+</section>
+
+<!-- ============ 09 TESTING ============ -->
+<section class="chapter">
+    <p class="kicker">09 · Testing and debugging</p>
+    <h2>How I checked it works</h2>
+    <p class="lead">I tested the site in Chrome on desktop (1440 px) and in phone mode (390 px), and with network requests to GitHub blocked to force the fallback and error paths.</p>
+    <table>
+        <thead><tr><th style="width:4%">#</th><th style="width:30%">Test</th><th>Expected</th><th style="width:8%">Result</th></tr></thead>
+        <tbody>
+            <tr><td>1</td><td>Open the repo index normally</td><td>Cards load. Status reads "Live from the GitHub API".</td><td class="ok">Pass</td></tr>
+            <tr><td>2</td><td>GitHub returns 403 (rate limit)</td><td>Falls back to <code>repos.json</code> and says so (Fig 29)</td><td class="ok">Pass</td></tr>
+            <tr><td>3</td><td>API and snapshot both blocked</td><td>Error message with a "try again" button (Fig 30)</td><td class="ok">Pass</td></tr>
+            <tr><td>4</td><td>Search <code>lang:python stars:&gt;0</code></td><td>3 results</td><td class="ok">Pass</td></tr>
+            <tr><td>5</td><td>Search <code>stars:abc</code></td><td>Message explains the filter couldn't be read</td><td class="ok">Pass</td></tr>
+            <tr><td>6</td><td>Pin by button, by drag and with arrow keys, then reload</td><td>Order is kept after the reload</td><td class="ok">Pass</td></tr>
+            <tr><td>7</td><td>Pin a 7th repo</td><td>Shelf shakes and says it holds 6</td><td class="ok">Pass</td></tr>
+            <tr><td>8</td><td>Click the Stars header twice</td><td>Sorts descending, then ascending. <code>aria-sort</code> updates.</td><td class="ok">Pass</td></tr>
+            <tr><td>9</td><td>Submit an empty contact form</td><td>4 messages, focus on Name (Fig 28)</td><td class="ok">Pass</td></tr>
+            <tr><td>10</td><td>Email <code>asha@example</code></td><td>"That email doesn't look complete…"</td><td class="ok">Pass</td></tr>
+            <tr><td>11</td><td>Type in the form, then reload</td><td>Draft is restored with "Start over" (Fig 19)</td><td class="ok">Pass</td></tr>
+            <tr><td>12</td><td>Visitor in London, location set to Delhi</td><td>"4.5 hours ahead", "about 328 km" (Fig 20)</td><td class="ok">Pass</td></tr>
+            <tr><td>13</td><td>Deny location permission</td><td>"No problem, location stays with you."</td><td class="ok">Pass</td></tr>
+            <tr><td>14</td><td>Phone width (390 px)</td><td>No sideways scrolling. One-column controls. Stacked table.</td><td class="ok">Pass</td></tr>
+            <tr><td>15</td><td>Keyboard only (Tab)</td><td>Skip link first, visible focus everywhere, every action reachable</td><td class="ok">Pass</td></tr>
+            <tr><td>16</td><td>Repos with HTML in the description</td><td>Shown as text, never run (<code>textContent</code> / <code>escapeHTML</code>)</td><td class="ok">Pass</td></tr>
+        </tbody>
+    </table>
+    <div class="grid2">
+        <figure class=""><img src="images/40-fallback-snapshot.png" alt=""><figcaption><b>Fig. 29</b> · <b>Fallback.</b> GitHub's API blocked, so the saved copy is shown with an orange notice.</figcaption></figure>
+        <figure class=""><img src="images/41-error-retry.png" alt=""><figcaption><b>Fig. 30</b> · <b>Error state.</b> Nothing reachable: a clear message and a retry link instead of a blank area.</figcaption></figure>
+    </div>
+    <h3>Debug mode</h3>
+    <p>Opening <code>lushadowx.github.io/portfolio2/?debug</code> turns on extra console output: how long each feature took to start (<code>performance.mark</code>/<code>measure</code>), a <code>console.table</code> of every repository with its language, stars and fork flag, and warnings with the full error when a fallback happens. Without <code>?debug</code> the console stays clean.</p>
+</section>
+
+<!-- ============ 10 DEPLOYMENT ============ -->
+<section class="chapter">
+    <p class="kicker">10 · Deployment</p>
+    <h2>Hosted on GitHub Pages</h2>
+    <p class="lead">The code lives in a public GitHub repository, and GitHub Pages serves it as a website straight from the <code>main</code> branch.</p>
+    <ol>
+        <li>Created the repository <code>LuShadowX/portfolio2</code> and pushed the code.</li>
+        <li>Settings → Pages → Source: <b>Deploy from a branch</b>, branch <code>main</code>, folder <code>/ (root)</code>.</li>
+        <li>GitHub builds and publishes to <b>https://lushadowx.github.io/portfolio2/</b>. Every push redeploys automatically.</li>
+        <li>Added the website link and description to the repository, and a README explaining features, structure and how to run it locally.</li>
+    </ol>
+    <figure class=""><img src="images/50-github-repo.png" alt=""><figcaption><b>Fig. 31</b> · <b>The repository</b>, with folders, README, the website link and a successful GitHub Pages deployment.</figcaption></figure>
+    <figure class=""><img src="images/51-github-commits.png" alt=""><figcaption><b>Fig. 32</b> · <b>Commit history.</b> Changes are split into small commits with clear messages.</figcaption></figure>
+    <h3>Running it locally</h3>
+    <pre>cd portfolio2
+python3 -m http.server 8000
+# open http://localhost:8000   (ES modules need a server, not file://)</pre>
+</section>
+
+<!-- ============ 11 CONCLUSION ============ -->
+<section class="chapter">
+    <p class="kicker">11 · Conclusion</p>
+    <h2>What I learned</h2>
+    <p class="lead">Portfolio2 puts every part of CSE326 into one site that people actually use, rather than ten separate lab pages.</p>
+    <ul>
+        <li><b>HTML is the foundation for accessibility and SEO.</b> Choosing <code>table</code>, <code>fieldset</code>, <code>time</code> and proper labels made the page work for screen readers and search engines with almost no extra code.</li>
+        <li><b>Modern CSS can do layout jobs that once needed JavaScript.</b> The container query restacks the table based on the space it actually has, not just the screen width.</li>
+        <li><b>Real data is messy.</b> APIs hit rate limits, users go offline, and storage can be blocked. Planning for failure (cache → API → snapshot, safe storage, <code>guard</code>) is what makes an app feel reliable.</li>
+        <li><b>Small, well-named modules are easier to debug.</b> When something broke, the <code>?debug</code> output pointed to the exact module.</li>
+        <li><b>Browser APIs are powerful but need consent and care.</b> Location is requested only on click, never stored, and every error case has a friendly message.</li>
+    </ul>
+    <h3>Possible next steps</h3>
+    <ul>
+        <li>A light/dark theme switch saved in localStorage</li>
+        <li>A service worker so the whole site works offline</li>
+        <li>Recording and adding the voice note</li>
+    </ul>
+    <div class="note" style="margin-top:18px"><b>Links</b><br>Live website: https://lushadowx.github.io/portfolio2/<br>Source code: https://github.com/LuShadowX/portfolio2</div>
+</section>
+
+</body>
+</html>
