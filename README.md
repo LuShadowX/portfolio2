@@ -4,6 +4,8 @@ My personal site: who I am, what I've built, the open-source fixes I've landed, 
 
 **Live:** https://lushadowx.github.io/portfolio2/
 
+**Project report (PDF):** [docs/Portfolio2_Report.pdf](docs/Portfolio2_Report.pdf)
+
 No framework and no build step. It's plain HTML, CSS and JavaScript (ES modules), hosted on GitHub Pages.
 
 ## What's on the page
